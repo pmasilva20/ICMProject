@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "933195828671",
+    "firebase_url": "https://icmproject-79952.firebaseio.com",
+    "project_id": "icmproject-79952",
+    "storage_bucket": "icmproject-79952.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933195828671:android:d85349b967b284cd41250a",
+        "android_client_info": {
+          "package_name": "com.example.icmproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933195828671-q6t7krdhqc10ig9bqhs0311udj4brv9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG2IIxmkXVsV24V5jotcW9BeSVDhb90YY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933195828671-q6t7krdhqc10ig9bqhs0311udj4brv9k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
