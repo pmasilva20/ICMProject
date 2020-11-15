@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ICMProject</string>
+    <string name="loginButton">Login</string>
+    <string name="registerButton">Register</string>
+    <string name="restaurante">Restaurant</string>
+    <string name="cliente">Client</string>
+    <string name="register_information_string">What are you planning to do?</string>
+    <string name="register_restaurant_information">Please Insert your informations</string>
+    <string name="email_tooltip">Email</string>
+    <string name="password_tooltip">Password</string>
+    <string name="restaurant_name_tooltip">Restaurant Name</string>
+    <string name="location_tooltip">Location</string>
 </resources>
