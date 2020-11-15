@@ -10,4 +10,7 @@
     <string name="password_tooltip">Password</string>
     <string name="restaurant_name_tooltip">Restaurant Name</string>
     <string name="location_tooltip">Location</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="register">Register</string>
 </resources>
