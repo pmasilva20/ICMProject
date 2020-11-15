@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/editTextEmailRegisterRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/registerRestaurantTextView" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextPasswordRegisterRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -40,10 +40,10 @@
         android:hint="@string/password_tooltip"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegisterRestaurant" />
 
     <EditText
-        android:id="@+id/editTextRestaurantName"
+        android:id="@+id/editTextRestaurantNameRegisterRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -53,10 +53,10 @@
         android:hint="@string/restaurant_name_tooltip"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLocationRegisterRestaurant" />
 
     <EditText
-        android:id="@+id/editTextLocation"
+        android:id="@+id/editTextLocationRegisterRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -66,7 +66,7 @@
         android:hint="@string/location_tooltip"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegisterRestaurant" />
 
     <Button
         android:id="@+id/submitButton"
@@ -76,8 +76,8 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="60dp"
         android:onClick="submitRegisterRestaurant"
-        android:text="Submit"
+        android:text="@string/register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRestaurantName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRestaurantNameRegisterRestaurant" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
