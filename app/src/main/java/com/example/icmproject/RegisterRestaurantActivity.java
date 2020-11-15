@@ -65,7 +65,7 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
 
     private void addRestaurantToDB(String email,String password,String local,String rest_name) {
         Map<String, Object> res = new HashMap<>();
-        res.put("status", "client");
+        res.put("status", "restaurant");
         res.put("email", email);
         res.put("password", password);
         res.put("localization",local);
