@@ -1,5 +1,6 @@
 package com.example.icmproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,8 +16,12 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void goToRegister(View view) {
+        Intent i = new Intent(this,RegisterActivity.class);
+        startActivity(i);
     }
 
     public void goToLogin(View view) {
+        Intent i = new Intent(this,LoginActivity.class);
+        startActivity(i);
     }
 }
