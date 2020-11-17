@@ -1,5 +1,6 @@
 package com.example.icmproject;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Log.d(TAG,"Redirecting to restaurant");
+                                    Intent i = new Intent(getApplicationContext(),RestaurantMenuActivity.class);
+                                    startActivity(i);
                                 }
                             }
                         } else {
