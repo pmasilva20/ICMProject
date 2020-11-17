@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ProductListFragment extends Fragment {
 
 
+    private static final String TAG = "productListFragment";
     private RecyclerView recyclerView;
     private ProductListAdapter adapter;
     private List<Product> productList = new ArrayList<>();
@@ -65,7 +67,7 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        productList.add(new Product("Almondegas","gramas",500.0,new Date()));
+        productList.add(new Product("gvnv","gramas",500.0,new Date()));
         //List<String> mWordList = new ArrayList<>();
         //mWordList.add("aaaaaaaaaaa");
         // Get a handle to the RecyclerView.
@@ -87,6 +89,7 @@ public class ProductListFragment extends Fragment {
 
     public void addProduct(Product p){
         productList.add(p);
+        Log.d(TAG,productList.toString());
         adapter.notifyDataSetChanged();
     }
 }

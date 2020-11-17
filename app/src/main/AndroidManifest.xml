@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICMProject">
-        <activity android:name=".RestaurantMakeOfferActivity"></activity>
+        <activity android:name=".RestaurantAddProductActivity"></activity>
+        <activity android:name=".RestaurantMakeOfferActivity" />
         <activity android:name=".RestaurantMenuActivity" />
         <activity android:name=".RegisterClientActivity" />
         <activity android:name=".RegisterRestaurantActivity" />
