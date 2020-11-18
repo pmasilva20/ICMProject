@@ -84,24 +84,6 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity {
         if(priceText.isEmpty()) priceText = "0.0";
         double price = Double.parseDouble(priceText);
         List<Product> lst = frag.getProductsInList();
-        //Add products to DB
-        for(Product p : lst){
-            db.collection("products")
-                    .add(p)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "Product added with ID: " + documentReference.getId());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
-        }
-
         //Add Cabaz to DB
         Offer cabaz = new Offer(lst,price);
         db.collection("offers")
