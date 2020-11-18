@@ -13,10 +13,7 @@ import java.util.Map;
 
 public class RestaurantAddProductActivity extends AppCompatActivity implements  AddProductFragment.OnProductConfirmedListener{
 
-    public static final String PName_REPLY = "PNAME";
-    public static final String PUnit_REPLY = "PUNIT";
-    public static final String PQuantity_REPLY = "PQUANTITY";
-    public static final String PShelfLife_REPLY = "PSHELFLIFE";
+    public static final String PRODUCT_REPLY = "PRODUCT_REPLY";
     private static final String TAG = "restAddProductActivity";
 
     @Override
@@ -34,14 +31,11 @@ public class RestaurantAddProductActivity extends AppCompatActivity implements  
 
 
     @Override
-    public void onProductConfirmed(Map<String,String> product_input) {
+    public void onProductConfirmed(Product p) {
         //Product has been confirmed
         Intent reply = new Intent();
-        reply.putExtra(PName_REPLY,product_input.get("name"));
-        reply.putExtra(PUnit_REPLY,product_input.get("unit"));
-        reply.putExtra(PQuantity_REPLY,product_input.get("quantity"));
-        reply.putExtra(PShelfLife_REPLY,product_input.get("shelf_life"));
-        Log.e(TAG,"test2");
+        reply.putExtra(PRODUCT_REPLY,p);
+        Log.e(TAG,p.toString());
         setResult(RESULT_OK,reply);
         finish();
     }

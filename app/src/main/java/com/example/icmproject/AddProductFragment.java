@@ -3,14 +3,22 @@ package com.example.icmproject;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStore;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,9 +26,11 @@ import java.util.Map;
 
 public class AddProductFragment extends Fragment implements View.OnClickListener {
 
+    private static final String TAG = "addProductFragment";
+    private MakeOfferViewModel vm;
     //So that when fragment calls this activity knows product has been confirmed
     public static interface OnProductConfirmedListener{
-        public abstract void onProductConfirmed(Map<String,String> product_input);
+        public abstract void onProductConfirmed(Product p);
     }
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +85,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,13 +106,22 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
             if(name.isEmpty())name = "test";
             if(unit.isEmpty())unit = "grams";
             if(quantity.isEmpty())quantity = "0";
-            if(shelf_life.isEmpty())shelf_life = "00/00/0000";
-            mold.put("name",name);
-            mold.put("unit",unit);
-            mold.put("quantity",quantity);
-            mold.put("shelf_life",shelf_life);
+            Date actualDate;
+            if(shelf_life.isEmpty())actualDate = Calendar.getInstance().getTime();
+            else{
+                try {
+                    actualDate = new SimpleDateFormat("dd/MM/yyyy").parse(shelf_life);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    actualDate = new Date();
+                    Log.e(TAG,"Error,invalid shelf life date given");
+                }
+            }
+
+            Product p = new Product(name,unit,Double.parseDouble(quantity),actualDate);
+
             //Signal activity,give product
-            prodListener.onProductConfirmed(mold);
+            prodListener.onProductConfirmed(p);
         }
     }
 }

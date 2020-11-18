@@ -1,8 +1,11 @@
 package com.example.icmproject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class Product {
+public class Product implements Parcelable {
     private String name;
     private String unit;
     private double quantity;
@@ -14,6 +17,25 @@ public class Product {
         this.quantity = quantity;
         this.shelfLife = shelfLife;
     }
+
+    protected Product(Parcel in) {
+        name = in.readString();
+        unit = in.readString();
+        quantity = in.readDouble();
+        shelfLife = new Date(in.readLong());
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -45,5 +67,28 @@ public class Product {
 
     public void setShelfLife(Date shelfLife) {
         this.shelfLife = shelfLife;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(unit);
+        dest.writeDouble(quantity);
+        dest.writeLong(shelfLife.getTime());
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", unit='" + unit + '\'' +
+                ", quantity=" + quantity +
+                ", shelfLife=" + shelfLife +
+                '}';
     }
 }

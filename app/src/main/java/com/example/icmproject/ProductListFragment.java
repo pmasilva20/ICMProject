@@ -2,7 +2,9 @@ package com.example.icmproject;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +22,8 @@ public class ProductListFragment extends Fragment {
 
     private static final String TAG = "productListFragment";
     private RecyclerView recyclerView;
+    private MakeOfferViewModel vm;
     private ProductListAdapter adapter;
-    private List<Product> productList = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -56,6 +58,12 @@ public class ProductListFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        vm = new ViewModelProvider(requireActivity()).get(MakeOfferViewModel.class);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -67,13 +75,10 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        productList.add(new Product("gvnv","gramas",500.0,new Date()));
-        //List<String> mWordList = new ArrayList<>();
-        //mWordList.add("aaaaaaaaaaa");
         // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewProductList);
         // Create an adapter and supply the data to be displayed.
-        adapter = new ProductListAdapter(getContext(), productList);
+        adapter = new ProductListAdapter(getContext(), vm.getListProducts());
         // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
         // Give the RecyclerView a default layout manager.
@@ -87,12 +92,7 @@ public class ProductListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_product_list, container, false);
     }
 
-    public void addProduct(Product p){
-        productList.add(p);
-        Log.d(TAG,productList.toString());
+    public void alertAddProduct(Product p){
         adapter.notifyDataSetChanged();
-    }
-    public List<Product> getProductsInList(){
-        return productList;
     }
 }
