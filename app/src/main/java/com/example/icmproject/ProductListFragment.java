@@ -92,4 +92,7 @@ public class ProductListFragment extends Fragment {
         Log.d(TAG,productList.toString());
         adapter.notifyDataSetChanged();
     }
+    public List<Product> getProductsInList(){
+        return productList;
+    }
 }

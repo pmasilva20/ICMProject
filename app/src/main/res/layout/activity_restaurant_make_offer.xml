@@ -8,30 +8,44 @@
 
     <FrameLayout
         android:id="@+id/fragmentContainerMakeOffer"
-        android:layout_width="418dp"
-        android:layout_height="385dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonInsertProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textViewOfferPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonInsertProduct"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerMakeOffer" />
-
     <Button
         android:id="@+id/buttonInsertProduct"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:onClick="insertProductOnClick"
         android:text="Novo Produto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerMakeOffer" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonConfirmOffer"
+        app:layout_constraintEnd_toEndOf="@+id/buttonConfirmOffer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonConfirmOffer"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:onClick="insertOfferInDB"
+        android:text="Confirmar Cabaz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPriceOffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonConfirmOffer"
+        app:layout_constraintTop_toTopOf="@+id/buttonInsertProduct" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

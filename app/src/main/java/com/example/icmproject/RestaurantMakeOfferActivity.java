@@ -1,5 +1,6 @@
 package com.example.icmproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,15 +9,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class RestaurantMakeOfferActivity extends AppCompatActivity {
 
     ProductListFragment frag;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "restMakeOfferActivity";
     public static final int ADD_PRODUCT = 1;
 
@@ -61,12 +72,51 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity {
                     Log.e(TAG,"Error,invalid shelf life date given");
                 }
                 Log.e(TAG,name);
-                frag.addProduct(new Product(name,unit,Double.parseDouble(quantity), actualDate));
+                Product p = new Product(name,unit,Double.parseDouble(quantity), actualDate);
+                frag.addProduct(p);
             }
         }
     }
 
 
+    public void insertOfferInDB(View view) {
+        String priceText = ((TextView)findViewById(R.id.editTextPriceOffer)).getText().toString();
+        if(priceText.isEmpty()) priceText = "0.0";
+        double price = Double.parseDouble(priceText);
+        List<Product> lst = frag.getProductsInList();
+        //Add products to DB
+        for(Product p : lst){
+            db.collection("products")
+                    .add(p)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "Product added with ID: " + documentReference.getId());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+        }
 
-
+        //Add Cabaz to DB
+        Offer cabaz = new Offer(lst,price);
+        db.collection("offers")
+                .add(cabaz)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "Offer added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
 }
