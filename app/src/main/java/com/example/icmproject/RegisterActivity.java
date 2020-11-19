@@ -18,12 +18,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void restaurantRegisterOnClick(View view) {
-        Intent i = new Intent(this,RegisterClientActivity.class);
+        Intent i = new Intent(this,ClientMenuActivity.class);
         startActivity(i);
     }
 
     public void clientRegisterOnClick(View view) {
-        Intent i = new Intent(this,RegisterRestaurantActivity.class);
+        Intent i = new Intent(this,RegisterClientActivity.class);
         startActivity(i);
     }
 }
