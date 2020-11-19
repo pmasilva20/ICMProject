@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,16 +57,18 @@ public class SeeOfferFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        //Load offers of DB
-        vm.loadOffersForRestaurant();
         // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewSeeOffer);
         // Create an adapter and supply the data to be displayed.
+        if(vm.getListOffers() == null) Log.e("NULL","vm wrong");
         adapter = new SeeOfferAdapter(getContext(), vm.getListOffers());
         // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
         // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //Load offers of DB
+        vm.loadOffersForRestaurant(adapter);
     }
 
 

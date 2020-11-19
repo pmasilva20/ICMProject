@@ -12,7 +12,6 @@ public class RestaurantSeeOffersActivity extends AppCompatActivity {
 
     private SeeOfferFragment frag;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -11,6 +11,7 @@ import com.example.icmproject.Offer;
 import com.example.icmproject.Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class MakeOfferViewModel  extends ViewModel {
     private static final String TAG = "makeOfferViewModel";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth auth;
     private List<Product> productList = new ArrayList<>();
 
     public List<Product> getListProducts(){
@@ -34,9 +36,10 @@ public class MakeOfferViewModel  extends ViewModel {
     }
 
     public void putOfferInDB(double price) {
+        auth = FirebaseAuth.getInstance();
         List<Product> lst = productList;
         //Add Cabaz to DB
-        Offer cabaz = new Offer(lst,price);
+        Offer cabaz = new Offer(lst,price,auth.getCurrentUser().getUid());
         db.collection("offers")
                 .add(cabaz)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

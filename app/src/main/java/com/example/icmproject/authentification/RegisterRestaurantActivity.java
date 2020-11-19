@@ -54,7 +54,7 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Redirect to DB stuff
-                            addRestaurantToDB(email,password,localization,res_name);
+                            addRestaurantToDB(email,password,localization,res_name,user.getUid());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -65,7 +65,7 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
                 });
     }
 
-    private void addRestaurantToDB(String email,String password,String local,String rest_name) {
+    private void addRestaurantToDB(String email,String password,String local,String rest_name,String uid) {
         Map<String, Object> res = new HashMap<>();
         res.put("status", "restaurant");
         res.put("email", email);
@@ -74,11 +74,12 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
         res.put("restaurant_name",rest_name);
         // Add a new restaurant with a generated ID
         db.collection("users")
-                .add(res)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(uid)
+                .set(res)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + uid);
                         Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(i);
                     }
@@ -94,12 +95,12 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
                         });
                         Log.w(TAG, "Error adding document", e);
                     }
-                }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                Log.w(TAG, "Document added");
-            }
-        });
-
+                })
+                .addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        Log.w(TAG, "Document added");
+                    }
+                });
     }
 }

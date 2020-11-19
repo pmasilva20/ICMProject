@@ -46,7 +46,7 @@ public class RegisterClientActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Redirect to DB stuff
-                            addClientToDB(email,password);
+                            addClientToDB(email,password,user.getUid());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -57,18 +57,19 @@ public class RegisterClientActivity extends AppCompatActivity {
                 });
     }
 
-    private void addClientToDB(String email,String password) {
+    private void addClientToDB(String email,String password,String uid) {
         Map<String, Object> client = new HashMap<>();
         client.put("status", "client");
         client.put("email", email);
         client.put("password", password);
         // Add a new client with a generated ID
         db.collection("users")
-                .add(client)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(uid)
+                .set(client)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + uid);
                         Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(i);
                     }
@@ -84,13 +85,13 @@ public class RegisterClientActivity extends AppCompatActivity {
                         });
                         Log.w(TAG, "Error adding document", e);
                     }
-                }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                })
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         Log.w(TAG, "Document added");
                     }
-        });
-
+                });
     }
 
 
