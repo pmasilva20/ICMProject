@@ -3,13 +3,9 @@ package com.example.icmproject.restaurantSeeOffer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import com.example.icmproject.MakeOfferViewModel;
-import com.example.icmproject.ProductListFragment;
 import com.example.icmproject.R;
 
 public class RestaurantSeeOffersActivity extends AppCompatActivity {

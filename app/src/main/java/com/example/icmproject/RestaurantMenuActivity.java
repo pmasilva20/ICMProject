@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.icmproject.restaurantMakeOffer.RestaurantMakeOfferActivity;
+
 public class RestaurantMenuActivity extends AppCompatActivity {
 
     @Override
@@ -15,7 +17,7 @@ public class RestaurantMenuActivity extends AppCompatActivity {
     }
 
     public void makeNewOffer(View view) {
-        Intent i = new Intent(getApplicationContext(),RestaurantMakeOfferActivity.class);
+        Intent i = new Intent(getApplicationContext(), RestaurantMakeOfferActivity.class);
         startActivity(i);
     }
 }

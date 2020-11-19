@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.client;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.icmproject.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

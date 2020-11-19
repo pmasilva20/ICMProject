@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.restaurantMakeOffer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -11,9 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.example.icmproject.Product;
+import com.example.icmproject.R;
 
 public class RestaurantMakeOfferActivity extends AppCompatActivity {
 

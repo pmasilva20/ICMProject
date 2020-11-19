@@ -1,4 +1,7 @@
-package com.example.icmproject;
+package com.example.icmproject.authentification;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.icmproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,27 +24,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterRestaurantActivity extends AppCompatActivity {
-
+public class RegisterClientActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private static final String TAG = "registerClientActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private static final String TAG = "registerRestActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_restaurant);
+        setContentView(R.layout.activity_register_client);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void submitRegisterRestaurant(View view) {
-        String email = ((TextView)findViewById(R.id.editTextEmailRegisterRestaurant)).getText().toString();
-        String password = ((TextView)findViewById(R.id.editTextPasswordRegisterRestaurant)).getText().toString();
-        String local = ((TextView)findViewById(R.id.editTextLocationRegisterRestaurant)).getText().toString();
-        String res_name = ((TextView)findViewById(R.id.editTextRestaurantNameRegisterRestaurant)).getText().toString();
-        registerUser(email,password,local,res_name);
-    }
-
-    private void registerUser(String email,String password,String localization,String res_name) {
+    private void registerUser(String email,String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -53,27 +46,25 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Redirect to DB stuff
-                            addRestaurantToDB(email,password,localization,res_name);
+                            addClientToDB(email,password);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterRestaurantActivity.this, "Authentication failed,please try again",
+                            Toast.makeText(RegisterClientActivity.this, "Authentication failed,please try again",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private void addRestaurantToDB(String email,String password,String local,String rest_name) {
-        Map<String, Object> res = new HashMap<>();
-        res.put("status", "restaurant");
-        res.put("email", email);
-        res.put("password", password);
-        res.put("localization",local);
-        res.put("restaurant_name",rest_name);
-        // Add a new restaurant with a generated ID
+    private void addClientToDB(String email,String password) {
+        Map<String, Object> client = new HashMap<>();
+        client.put("status", "client");
+        client.put("email", email);
+        client.put("password", password);
+        // Add a new client with a generated ID
         db.collection("users")
-                .add(res)
+                .add(client)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -94,11 +85,18 @@ public class RegisterRestaurantActivity extends AppCompatActivity {
                         Log.w(TAG, "Error adding document", e);
                     }
                 }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                Log.w(TAG, "Document added");
-            }
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Log.w(TAG, "Document added");
+                    }
         });
 
+    }
+
+
+    public void registerClientOnClick(View view) {
+        String email = ((TextView)findViewById(R.id.editTextEmailRegisterClient)).getText().toString();
+        String password = ((TextView)findViewById(R.id.editTextPasswordRegisterClient)).getText().toString();
+        registerUser(email,password);
     }
 }

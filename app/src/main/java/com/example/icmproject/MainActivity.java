@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.icmproject.restaurantSeeOffer.RestaurantSeeOffersActivity;
+import com.example.icmproject.client.ClientMenuActivity;
 
 public class MainActivity extends AppCompatActivity {
 

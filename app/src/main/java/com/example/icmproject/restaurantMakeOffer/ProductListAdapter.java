@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.restaurantMakeOffer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.icmproject.Product;
+import com.example.icmproject.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

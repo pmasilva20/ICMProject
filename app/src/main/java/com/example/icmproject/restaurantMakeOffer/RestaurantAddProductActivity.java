@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.restaurantMakeOffer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,7 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.Map;
+import com.example.icmproject.Product;
+import com.example.icmproject.R;
 
 public class RestaurantAddProductActivity extends AppCompatActivity implements  AddProductFragment.OnProductConfirmedListener{
 

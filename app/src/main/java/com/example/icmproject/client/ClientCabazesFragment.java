@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.client;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.icmproject.R;
 
 public class ClientCabazesFragment extends Fragment {
     @Nullable

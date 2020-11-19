@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.restaurantMakeOffer;
 
 import android.os.Bundle;
 
@@ -8,14 +8,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.example.icmproject.Product;
+import com.example.icmproject.R;
 
 public class ProductListFragment extends Fragment {
 

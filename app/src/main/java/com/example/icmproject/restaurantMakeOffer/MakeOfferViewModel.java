@@ -1,4 +1,4 @@
-package com.example.icmproject;
+package com.example.icmproject.restaurantMakeOffer;
 
 import android.util.Log;
 
@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.icmproject.Offer;
+import com.example.icmproject.Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;

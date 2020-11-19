@@ -11,8 +11,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icmproject.Offer;
-import com.example.icmproject.Product;
-import com.example.icmproject.ProductListAdapter;
 import com.example.icmproject.R;
 
 import java.text.DateFormat;
