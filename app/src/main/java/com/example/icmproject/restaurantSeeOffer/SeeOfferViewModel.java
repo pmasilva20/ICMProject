@@ -37,7 +37,8 @@ public class SeeOfferViewModel extends ViewModel {
     }
 
     public void loadOffersForRestaurant(SeeOfferAdapter adapter){
-        offersList.add(new Offer());
+        //Reset offerList for when it returns
+        offersList.clear();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser loggedIn = mAuth.getCurrentUser();
         db.collection("offers").whereEqualTo("madeBy",loggedIn.getUid()).get()

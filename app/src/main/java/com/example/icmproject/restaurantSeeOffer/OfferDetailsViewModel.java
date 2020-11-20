@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icmproject.Offer;
+import com.example.icmproject.Product;
 import com.example.icmproject.UserView;
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ public class OfferDetailsViewModel extends ViewModel {
     private static final String TAG = "offerDetailsViewModel";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Offer offerSelected;
+    private List<Product> productsInOfferSelected;
     private List<String> idsUsersWhoRequested = new ArrayList<>();
     private List<UserView> usersWhoRequested = new ArrayList<>();
 
@@ -40,6 +42,7 @@ public class OfferDetailsViewModel extends ViewModel {
     //TODO:Get users that requested this,maybe list of users Id's in offers
     //Kinda done
     public void loadUsersForOffer(UserListAdapter adapter){
+        idsUsersWhoRequested = new ArrayList<>();
         Log.d(TAG,"LoadFromDB");
         db.collection("offers").document(offerSelected.getDbId()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -47,14 +50,17 @@ public class OfferDetailsViewModel extends ViewModel {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
                             idsUsersWhoRequested = (List<String>) task.getResult().get("requestedBy");
-                            Log.d(TAG,idsUsersWhoRequested.toString());
-                            loadUserNames(adapter);
+                            if (idsUsersWhoRequested != null){
+                                Log.d(TAG,idsUsersWhoRequested.toString());
+                                loadUserNames(adapter);
+                            }
                         }
                     }
                 });
     }
 
     private void loadUserNames(UserListAdapter adapter) {
+        usersWhoRequested.clear();
         for(String idUser : idsUsersWhoRequested){
             db.collection("users").document(idUser).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -77,4 +83,7 @@ public class OfferDetailsViewModel extends ViewModel {
         return usersWhoRequested;
     }
 
+    public List<Product> getListProductsForOffer() {
+        return offerSelected.getProducts();
+    }
 }

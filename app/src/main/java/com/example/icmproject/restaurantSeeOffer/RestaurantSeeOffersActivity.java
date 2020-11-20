@@ -25,7 +25,7 @@ public class RestaurantSeeOffersActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
         fragmentTransaction.add(R.id.fragmentRestaurantOfferDetails,
-                frag).addToBackStack(null).commit();
+                frag).commit();
 
     }
 }

@@ -22,6 +22,16 @@ import java.text.SimpleDateFormat;
 
 public class OfferDetailsUsersFragment extends Fragment {
 
+    OnChangingToOfferDetailsProductsFragment callback;
+
+    public void setOnChangingToOfferDetailsProductsFragment(OnChangingToOfferDetailsProductsFragment callback){
+        this.callback = callback;
+    }
+
+    public interface OnChangingToOfferDetailsProductsFragment{
+        public void OnChangingToOfferDetailsProductsFragment();
+    }
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String TAG = "offerDetailsUsersFrag";
