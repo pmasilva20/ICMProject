@@ -41,7 +41,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Product current = productList.get(position);
         //Get each view and set stuff
         DateFormat dt = new SimpleDateFormat("dd/mm/yyyy");
-        ((TextView)holder.productView.findViewById(R.id.textViewCumprido)).setText(current.getUnit());
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText(current.getUnit());
         ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText(dt.format(current.getShelfLife()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getQuantity()));
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(current.getName());
@@ -59,7 +59,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         public ProductViewHolder(View itemView, ProductListAdapter adapter) {
             super(itemView);
-            productView = itemView.findViewById(R.id.cardOffer);
+            productView = itemView.findViewById(R.id.cardUserView);
             this.mAdapter = adapter;
         }
     }

@@ -1,6 +1,8 @@
 package com.example.icmproject.restaurantSeeOffer;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +21,12 @@ import java.util.List;
 
 public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferViewHolder>{
 
+    public static final String OFFER_SELECTED = "OFFER_SELECTED";
+    private static final String TAG = "seeOfferAdapter";
+    private SeeOfferAdapter adapter = this;
     public List<Offer> offerList;
     private LayoutInflater inflater;
+
 
     public SeeOfferAdapter(Context context, List<Offer> listOffers) {
         inflater = LayoutInflater.from(context);
@@ -43,8 +49,21 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice()));
         //Replace this with Icons or smt
-        ((TextView)holder.productView.findViewById(R.id.textViewCumprido)).setText("Cumprido falso");
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido falso");
         ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado falso");
+
+        //Set OnClick stuff
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Offer selected = offerList.get(position);
+                //Go to next Acitivty with Parceable Offer
+                Log.d(TAG,"Onclick "+selected.toString());
+                Intent i = new Intent(v.getContext(), RestaurantOfferDetailsActivity.class);
+                i.putExtra(OFFER_SELECTED,selected);
+                v.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -59,7 +78,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
 
         public OfferViewHolder(View itemView, SeeOfferAdapter adapter) {
             super(itemView);
-            productView = itemView.findViewById(R.id.cardOffer);
+            productView = itemView.findViewById(R.id.cardUserView);
             this.mAdapter = adapter;
         }
     }

@@ -16,13 +16,15 @@ public class RestaurantSeeOffersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_see_offer);
+
+
         //Set Fragment on FrameLayout
-        frag = SeeOfferFragment.newInstance("ex","ex2");
+        frag = SeeOfferFragment.newInstance();
         // Get the FragmentManager and start a transaction.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
-        fragmentTransaction.add(R.id.fragmentRestaurantSeeOffers,
+        fragmentTransaction.add(R.id.fragmentRestaurantOfferDetails,
                 frag).addToBackStack(null).commit();
 
     }

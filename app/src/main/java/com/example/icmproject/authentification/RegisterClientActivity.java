@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,6 +65,7 @@ public class RegisterClientActivity extends AppCompatActivity {
         client.put("status", "client");
         client.put("email", email);
         client.put("password", password);
+        client.put("requestedOffers", Collections.emptyList());
         // Add a new client with a generated ID
         db.collection("users")
                 .document(uid)

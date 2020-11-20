@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".restaurantSeeOffer.OfferDetailsUsersFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUMPRIDO"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewOfferDetailsValidade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewOfferDetailsValidade" />
+
+        <TextView
+            android:id="@+id/textViewOfferDetailsValidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validade"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewOfferDetailsPreço"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewOfferDetailsPreço"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preço"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
+            app:layout_constraintEnd_toEndOf="@+id/textViewOfferDetailsValidade"
+            app:layout_constraintStart_toStartOf="@+id/textViewOfferDetailsValidade"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOfferDetailsValidade" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REQUESITADO"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewOfferDetailsPreço"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewOfferDetailsUsers"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
