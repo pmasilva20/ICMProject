@@ -12,13 +12,25 @@ public class Offer implements Parcelable {
     public String madeBy;
     private String dbId = "";
 
+    public String getCityCreator() {
+        return cityCreator;
+    }
+
+    private String cityCreator;
+
     public Offer(){
 
     }
-    public Offer(List<Product> products, double price,String madeBy) {
+
+    public String getMadeBy() {
+        return madeBy;
+    }
+
+    public Offer(List<Product> products, double price, String madeBy, String cityOfRestaurant) {
         this.products = products;
         this.price = price;
         this.madeBy = madeBy;
+        this.cityCreator = cityOfRestaurant;
     }
 
     protected Offer(Parcel in) {
@@ -26,6 +38,7 @@ public class Offer implements Parcelable {
         price = in.readDouble();
         madeBy = in.readString();
         dbId = in.readString();
+        cityCreator = in.readString();
     }
 
     public static final Creator<Offer> CREATOR = new Creator<Offer>() {
@@ -70,6 +83,7 @@ public class Offer implements Parcelable {
         dest.writeDouble(price);
         dest.writeString(madeBy);
         dest.writeString(dbId);
+        dest.writeString(cityCreator);
     }
 
     public String getDbId() {
