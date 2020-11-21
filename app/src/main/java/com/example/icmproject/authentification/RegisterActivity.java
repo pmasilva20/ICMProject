@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void restaurantRegisterOnClick(View view) {
-        Intent i = new Intent(this, ClientMenuActivity.class);
+        Intent i = new Intent(this, RegisterRestaurantActivity.class);
         startActivity(i);
     }
 

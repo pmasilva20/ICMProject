@@ -22,4 +22,8 @@
     <string name="data_de_validade">Data de Validade</string>
     <string name="adicionar_produto">Adicionar Produto</string>
     <string name="confirmar">Confirmar</string>
+    <string name="location_permission_denied">Location permission denied</string>
+    <string name="service_not_available">Serviço não disponivel</string>
+    <string name="invalid_lat_long_used">Invalid coordinates supllied</string>
+    <string name="no_address_found">Nenhuma localização encontrada</string>
 </resources>
