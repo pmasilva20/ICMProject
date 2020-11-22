@@ -1,15 +1,15 @@
-package com.example.icmproject.client;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.icmproject;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.icmproject.R;
+import com.example.icmproject.client.ClientBookingsFragment;
+import com.example.icmproject.client.ClientCabazesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

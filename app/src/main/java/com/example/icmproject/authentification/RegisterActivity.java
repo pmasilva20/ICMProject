@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.icmproject.client.ClientMenuActivity;
 import com.example.icmproject.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -21,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void restaurantRegisterOnClick(View view) {
-        Intent i = new Intent(this, ClientMenuActivity.class);
+        Intent i = new Intent(this, RegisterRestaurantActivity.class);
         startActivity(i);
     }
 

@@ -11,6 +11,8 @@ public class Product implements Parcelable {
     private double quantity;
     private Date shelfLife;
 
+    public Product(){}
+
     public Product(String name, String unit, double quantity, Date shelfLife) {
         this.name = name;
         this.unit = unit;
