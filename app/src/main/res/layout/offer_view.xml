@@ -11,6 +11,8 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -21,6 +23,10 @@
             android:layout_height="wrap_content"
             android:text="Cumprido"
             android:textColor="@color/white"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBaseline_toBaselineOf="@+id/textViewValidade"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewValidade" />
@@ -35,6 +41,10 @@
             android:layout_marginRight="16dp"
             android:text="Requesitado"
             android:textColor="@color/white"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBaseline_toBaselineOf="@+id/textViewPreço"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewPreço" />
@@ -50,6 +60,10 @@
             android:inputType="numberDecimal"
             android:text="Preço"
             android:textColor="@color/white"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textViewValidade"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +78,10 @@
             android:layout_marginTop="16dp"
             android:text="Validade"
             android:textColor="@color/white"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

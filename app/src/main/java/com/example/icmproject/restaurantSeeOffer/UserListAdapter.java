@@ -42,7 +42,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.user_view,
                 parent, false);
-        return new UserListAdapter.UserViewHolder(itemView, this);
+        ((OfferDetailsViewModel)vm).addUserView(itemView);
+        return new UserViewHolder(itemView, this);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
                 //Make some call to send notification to user
                 //Lock all other options
                 Log.d(TAG,"Onclick,selected to lock this user: "+current.getDbId());
-                ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId());
+                ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId(),v);
             }
         });
     }

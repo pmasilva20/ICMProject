@@ -21,7 +21,9 @@ public class ClientCabazesFragment extends Fragment {
 
     private ClientSeeOfferViewModel vm;
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewCity;
     private ClientSeeOfferAdapter adapter;
+    private ClientCityListAdapter adapterCity;
 
     public ClientCabazesFragment() {
         // Required empty public constructor
@@ -34,14 +36,27 @@ public class ClientCabazesFragment extends Fragment {
         recyclerView = getView().findViewById(R.id.recyclerViewSeeOffer);
         // Create an adapter and supply the data to be displayed.
         if(vm.getListOffers() == null) Log.e("NULL","vm wrong");
-        adapter = new ClientSeeOfferAdapter(getContext(), vm.getListOffers());
+        adapter = new ClientSeeOfferAdapter(getContext(), vm.getListOffers(),vm);
         // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
         // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //Load offers of DB
-        vm.loadOffersForClient(adapter);
+
+        // Get a handle to the RecyclerView.
+        recyclerViewCity = getView().findViewById(R.id.recyclerViewCityList);
+        adapterCity = new ClientCityListAdapter(getContext(), vm.getCityList(),vm,adapter);
+        // Connect the adapter with the RecyclerView.
+        recyclerViewCity.setAdapter(adapterCity);
+        // Give the RecyclerView a default layout manager.
+        recyclerViewCity.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        //Get Location of User,than city Address,check if in list,then loadOffers filtering by city
+        vm.setAdapterCity(adapterCity);
+        vm.setAdapterOffer(adapter);
+        vm.getCityAddress(getActivity(),getContext());
+
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

@@ -63,4 +63,9 @@ public class RestaurantOfferDetailsActivity extends AppCompatActivity implements
     public void seeProductsOnClick(View view) {
         this.OnChangingToOfferDetailsProductsFragment();
     }
+
+    public void confirmKeyOnClick(View view) {
+        //Tell VM to make querie,if wrong Toast,if yes,Offer iis done for
+        vm.checKeyAuth(this);
+    }
 }

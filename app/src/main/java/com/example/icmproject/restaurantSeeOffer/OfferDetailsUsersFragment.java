@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.icmproject.Offer;
@@ -70,6 +71,9 @@ public class OfferDetailsUsersFragment extends Fragment {
         super.onStart();
         Log.e(TAG,"getting VM");
         vm = new ViewModelProvider(requireActivity()).get(OfferDetailsViewModel.class);
+        //Get Views and put them on VM
+        vm.setTokenInputView(getView().findViewById(R.id.editTextKey));
+        vm.setTokenButtonView(getView().findViewById(R.id.buttonConfirmKey));
         // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewOfferDetailsUsers);
         // Create an adapter and supply the data to be displayed.
@@ -80,6 +84,8 @@ public class OfferDetailsUsersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         vm.loadUsersForOffer(adapter);
         adapter.setVM(vm);
+        
+        vm.checkUpdateUI();
 
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

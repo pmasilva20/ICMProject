@@ -10,13 +10,19 @@ public class Offer implements Parcelable {
     public List<Product> products;
     public double price;
     public String madeBy;
+    public String cityCreator;
     private String dbId = "";
+
+    public void setValidade(Date validade) {
+        this.validade = validade;
+    }
+
+    public Date validade;
 
     public String getCityCreator() {
         return cityCreator;
     }
 
-    private String cityCreator;
 
     public Offer(){
 
@@ -39,6 +45,7 @@ public class Offer implements Parcelable {
         madeBy = in.readString();
         dbId = in.readString();
         cityCreator = in.readString();
+        validade = new Date(in.readLong());
     }
 
     public static final Creator<Offer> CREATOR = new Creator<Offer>() {
@@ -52,6 +59,32 @@ public class Offer implements Parcelable {
             return new Offer[size];
         }
     };
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Offer offer = (Offer) o;
+
+        if (Double.compare(offer.price, price) != 0) return false;
+        if (!madeBy.equals(offer.madeBy)) return false;
+        if (!cityCreator.equals(offer.cityCreator)) return false;
+        return dbId != null ? dbId.equals(offer.dbId) : offer.dbId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(price);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + madeBy.hashCode();
+        result = 31 * result + cityCreator.hashCode();
+        result = 31 * result + (dbId != null ? dbId.hashCode() : 0);
+        return result;
+    }
 
     public List<Product> getProducts() {
         return products;
@@ -84,6 +117,7 @@ public class Offer implements Parcelable {
         dest.writeString(madeBy);
         dest.writeString(dbId);
         dest.writeString(cityCreator);
+        dest.writeLong(validade.getTime());
     }
 
     public String getDbId() {

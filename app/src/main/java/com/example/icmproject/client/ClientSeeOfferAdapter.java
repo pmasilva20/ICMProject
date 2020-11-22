@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,20 +24,22 @@ public class ClientSeeOfferAdapter extends RecyclerView.Adapter<ClientSeeOfferAd
 
     public static final String OFFER_SELECTED = "OFFER_SELECTED";
     private static final String TAG = "ClientSeeOfferAdapter";
+    private ClientSeeOfferViewModel vm;
     private ClientSeeOfferAdapter adapter = this;
     public List<Offer> offerList;
     private LayoutInflater inflater;
 
 
-    public ClientSeeOfferAdapter(Context context, List<Offer> listOffers) {
+    public ClientSeeOfferAdapter(Context context, List<Offer> listOffers,ClientSeeOfferViewModel vm) {
         inflater = LayoutInflater.from(context);
         this.offerList = listOffers;
+        this.vm = vm;
     }
 
     @NonNull
     @Override
     public ClientOfferViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.offer_view,
+        View itemView = inflater.inflate(R.layout.offer_view_client,
                 parent, false);
         return new ClientSeeOfferAdapter.ClientOfferViewHolder(itemView, this);
     }
@@ -53,6 +56,17 @@ public class ClientSeeOfferAdapter extends RecyclerView.Adapter<ClientSeeOfferAd
         ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado falso");
 
         //Set OnClick stuff
+        Button reserveButton = holder.itemView.findViewById(R.id.buttonOfferViewItemReserve);
+        vm.checkIfRequestedAlready(current,reserveButton);
+        vm.addReserveButtonList(reserveButton);
+        reserveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Query,add
+                vm.sendRequest(offerList.get(position).getDbId(),v);
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

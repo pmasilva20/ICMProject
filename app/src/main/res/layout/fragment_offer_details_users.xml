@@ -28,7 +28,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/textViewOfferDetailsPreço"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Preço"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
+            app:layout_constraintBottom_toTopOf="@+id/editTextKey"
             app:layout_constraintEnd_toEndOf="@+id/textViewOfferDetailsValidade"
             app:layout_constraintStart_toStartOf="@+id/textViewOfferDetailsValidade"
             app:layout_constraintTop_toBottomOf="@+id/textViewOfferDetailsValidade" />
@@ -65,12 +65,38 @@
             android:id="@+id/buttonOfferDetailsUsersSeeProducts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:onClick="seeProductsOnClick"
             android:text="Ver Produtos"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextKey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textViewOfferDetailsPreço"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintHorizontal_bias="0.763"
+            app:layout_constraintStart_toEndOf="@+id/textViewOfferDetailsPreço" />
+
+        <EditText
+            android:id="@+id/editTextKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
+            app:layout_constraintEnd_toStartOf="@+id/buttonOfferDetailsUsersSeeProducts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+        <Button
+            android:id="@+id/buttonConfirmKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:onClick="confirmKeyOnClick"
+            android:text="Confirmar Chave"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
+            app:layout_constraintEnd_toStartOf="@+id/buttonOfferDetailsUsersSeeProducts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextKey" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
