@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.icmproject.ClientMenuActivity;
 import com.example.icmproject.R;
 import com.example.icmproject.RestaurantMenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +21,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -60,9 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG,"Logging in");
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                //Send token for user just logged in
+                                sendNotificationToken(currentUser.getUid());
                                 Map<String,Object> userData = document.getData();
                                 if(((String)userData.get("status")).equals("client")){
                                     Log.d(TAG,"Redirecting to client");
+                                    Intent i = new Intent(getApplicationContext(), ClientMenuActivity.class);
+                                    startActivity(i);
                                 }
                                 else{
                                     Log.d(TAG,"Redirecting to restaurant");
@@ -73,6 +81,32 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
+                    }
+                });
+    }
+
+    private void sendNotificationToken(String uid) {
+        //Fetch from FireBase Messaging,send to FireStore
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log
+                        Log.d(TAG, token);
+                        //Send to FS
+                        Map<String,Object> insert = new HashMap<>();
+                        insert.put("notificationToken",token);
+                        db.collection("users").document(uid).update(insert);
+                        Log.d(TAG,"Updated notification token when loggin in");
+
                     }
                 });
     }

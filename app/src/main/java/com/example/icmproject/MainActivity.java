@@ -5,7 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.icmproject.client.ClientMenuActivity;
+import com.example.icmproject.authentification.MainMenuActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 

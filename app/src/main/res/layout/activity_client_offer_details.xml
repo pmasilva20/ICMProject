@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurantSeeOffer.RestaurantSeeOffersActivity">
+    tools:context=".client.ClientOfferDetailsActivity">
 
     <FrameLayout
-        android:id="@+id/fragmentRestaurantOfferDetails"
+        android:id="@+id/fragmentClientOfferDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,5 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
     </FrameLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.icmproject.restaurantSeeOffer;
+package com.example.icmproject.client;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,30 +19,31 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferViewHolder>{
+public class ClientSeeBookingsAdapter extends RecyclerView.Adapter<ClientSeeBookingsAdapter.ClientBookingsViewHolder>{
+
 
     public static final String OFFER_SELECTED = "OFFER_SELECTED";
-    private static final String TAG = "seeOfferAdapter";
-    private SeeOfferAdapter adapter = this;
+    private static final String TAG = "ClientSeeBookingAdapter";
+    private ClientSeeBookingsAdapter adapter = this;
     public List<Offer> offerList;
     private LayoutInflater inflater;
 
 
-    public SeeOfferAdapter(Context context, List<Offer> listOffers) {
+    public ClientSeeBookingsAdapter(Context context, List<Offer> listOffers) {
         inflater = LayoutInflater.from(context);
         this.offerList = listOffers;
     }
 
     @NonNull
     @Override
-    public OfferViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ClientBookingsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.offer_view,
                 parent, false);
-        return new SeeOfferAdapter.OfferViewHolder(itemView, this);
+        return new ClientSeeBookingsAdapter.ClientBookingsViewHolder(itemView, this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ClientBookingsViewHolder holder, int position) {
         Offer current = offerList.get(position);
         //Get each view and set stuff
         DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
@@ -59,7 +60,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
                 Offer selected = offerList.get(position);
                 //Go to next Acitivty with Parceable Offer
                 Log.d(TAG,"Onclick "+selected.toString());
-                Intent i = new Intent(v.getContext(), RestaurantOfferDetailsActivity.class);
+                Intent i = new Intent(v.getContext(), ClientOfferDetailsActivity.class);
                 i.putExtra(OFFER_SELECTED,selected);
                 v.getContext().startActivity(i);
             }
@@ -71,15 +72,16 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         return offerList.size();
     }
 
-    public class OfferViewHolder extends RecyclerView.ViewHolder {
+    public class ClientBookingsViewHolder extends RecyclerView.ViewHolder {
 
         public final CardView productView;
-        final SeeOfferAdapter mAdapter;
+        final ClientSeeBookingsAdapter mAdapter;
 
-        public OfferViewHolder(View itemView, SeeOfferAdapter adapter) {
+        public ClientBookingsViewHolder(View itemView, ClientSeeBookingsAdapter adapter) {
             super(itemView);
             productView = itemView.findViewById(R.id.cardUserView);
             this.mAdapter = adapter;
         }
     }
+
 }

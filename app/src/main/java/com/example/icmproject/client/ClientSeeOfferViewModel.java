@@ -1,34 +1,37 @@
-package com.example.icmproject.restaurantSeeOffer;
+package com.example.icmproject.client;
 
-import android.util.Log;
+import android.content.Context;
+import android.location.Address;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.collection.CircularArray;
 import androidx.lifecycle.ViewModel;
 
 import com.example.icmproject.Offer;
-import com.example.icmproject.Product;
+import com.example.icmproject.location.FetchAddressTask;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.android.gms.location.LocationResult;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class SeeOfferViewModel extends ViewModel {
+public class ClientSeeOfferViewModel extends ViewModel {
 
-    private static final String TAG = "seeOfferVM";
+    private static final String TAG = "ClientSeeOfferVM";
     private List<Offer> offersList;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private TextView mLocationTextView;
 
-    public SeeOfferViewModel() {
+    public ClientSeeOfferViewModel() {
         this.offersList = new ArrayList<>();
     }
 
@@ -36,17 +39,16 @@ public class SeeOfferViewModel extends ViewModel {
         return offersList;
     }
 
-    public void loadOffersForRestaurant(SeeOfferAdapter adapter){
-        //Reset offerList for when it returns
-        offersList.clear();
+    public void loadOffersForClient(ClientSeeOfferAdapter adapter){
+        offersList.add(new Offer());
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser loggedIn = mAuth.getCurrentUser();
-        db.collection("offers").whereEqualTo("madeBy",loggedIn.getUid()).get()
+
+        db.collection("offers").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
-                            Log.d(TAG,"Getting document for rest:"+loggedIn.getEmail()+" ->"+doc.getData().toString());
                             Offer of = doc.toObject(Offer.class);
                             of.setDbId(doc.getId());
                             offersList.add(of);
@@ -63,3 +65,4 @@ public class SeeOfferViewModel extends ViewModel {
                 });
     }
 }
+
