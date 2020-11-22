@@ -50,7 +50,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
             public void onClick(View v) {
                 //Make some call to send notification to user
                 //Lock all other options
-                Log.d(TAG,"Onclick,selected to lock this user: "+current.getUsername());
+                Log.d(TAG,"Onclick,selected to lock this user: "+current.getDbId());
+                //I have user ID,get from here user notification Token,generate a key for this Offer and send notification
             }
         });
     }

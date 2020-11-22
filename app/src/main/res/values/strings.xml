@@ -26,4 +26,6 @@
     <string name="service_not_available">Serviço não disponivel</string>
     <string name="invalid_lat_long_used">Invalid coordinates supllied</string>
     <string name="no_address_found">Nenhuma localização encontrada</string>
+    <string name="msg_token_fmt">token FCM</string>
+    <string name="default_notification_channel_id">1</string>
 </resources>
