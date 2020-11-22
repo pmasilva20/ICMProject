@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+
+
 public class FetchAddressTask extends AsyncTask<Location, Void, List<Address>> {
 
     public interface OnTaskCompleted {
@@ -40,6 +42,7 @@ public class FetchAddressTask extends AsyncTask<Location, Void, List<Address>> {
         Location location = locations[0];
         List<Address> addresses = null;
         String resultMessage = "";
+
         try {
 
             addresses = geocoder.getFromLocation(
@@ -47,6 +50,7 @@ public class FetchAddressTask extends AsyncTask<Location, Void, List<Address>> {
                     location.getLongitude(),
                     // In this sample, get just a single address
                     1);
+
             if (addresses == null || addresses.size() == 0) {
                 if (resultMessage.isEmpty()) {
                     resultMessage = mContext

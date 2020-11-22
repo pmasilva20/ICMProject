@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.icmproject.ClientMenuActivity;
 import com.example.icmproject.R;
 import com.example.icmproject.RestaurantMenuActivity;
 import com.example.icmproject.client.ClientMenuActivity;
@@ -75,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Log.d(TAG,"Redirecting to restaurant");
-                                    Intent i = new Intent(getApplicationContext(), RestaurantMenuActivity.class);
+                                    Intent i = new Intent(getApplicationContext(), ClientMenuActivity.class);
                                     startActivity(i);
                                 }
                             }
