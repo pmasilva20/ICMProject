@@ -79,6 +79,7 @@ public class OfferDetailsUsersFragment extends Fragment {
         // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         vm.loadUsersForOffer(adapter);
+        adapter.setVM(vm);
 
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

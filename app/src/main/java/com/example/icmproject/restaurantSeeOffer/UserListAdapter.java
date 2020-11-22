@@ -10,11 +10,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icmproject.Offer;
 import com.example.icmproject.R;
 import com.example.icmproject.UserView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,6 +30,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     private static final String TAG = "userListAdapter";
     public List<UserView> userList;
     private LayoutInflater inflater;
+    private ViewModel vm;
 
     public UserListAdapter(Context context, List<UserView> userList) {
         inflater = LayoutInflater.from(context);
@@ -51,7 +57,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
                 //Make some call to send notification to user
                 //Lock all other options
                 Log.d(TAG,"Onclick,selected to lock this user: "+current.getDbId());
-                //I have user ID,get from here user notification Token,generate a key for this Offer and send notification
+                ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId());
             }
         });
     }
@@ -59,6 +65,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     @Override
     public int getItemCount() {
         return userList.size();
+    }
+
+    public void setVM(ViewModel viewModel){
+        this.vm = viewModel;
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder{

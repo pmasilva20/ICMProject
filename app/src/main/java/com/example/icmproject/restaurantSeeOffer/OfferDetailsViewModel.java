@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.icmproject.Offer;
 import com.example.icmproject.Product;
 import com.example.icmproject.UserView;
+import com.example.icmproject.notification.NotificationManager;
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -77,6 +78,34 @@ public class OfferDetailsViewModel extends ViewModel {
                     });
         }
 
+    }
+
+    public void confirmRequest(String userUid){
+        //I have user ID,get from here user notification Token,generate a key for this Offer and send notification
+        db.collection("users").document(userUid).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            String token = (String)task.getResult().get("notificationToken");
+                            String keyGenerated = generateKey(offerSelected);
+                            //String receiverToken,String title,String body,String dataValue
+                            String body = String.format("O teu pedido de valor %s foi confirmado com sucesso\n" +
+                                    "O teu código de validação é o seguinte:%s\n" +
+                                    "Por favor mostra isto ao ir buscar a entrega",offerSelected.getPrice(),keyGenerated);
+                            new NotificationManager().execute(token,"O teu pedido foi confirmado!",body,"");
+                            //Put key in DB
+                            db.collection("offers").document(offerSelected.getDbId()).
+                                    update("confirmationKey",keyGenerated);
+                        }
+                    }
+                });
+    }
+
+    private String generateKey(Offer offer) {
+        String key = String.valueOf(offer.hashCode());
+        Log.d(TAG,"Gnerating key for Offer:"+offer.getDbId()+ " key:"+key);
+        return key;
     }
 
     public List<UserView> getUsers(){

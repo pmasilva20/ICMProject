@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     private static final String TAG = "loginActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private boolean logoutCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //Testing authentification
         mAuth = FirebaseAuth.getInstance();
+        logoutCheck = false;
 
     }
 
@@ -47,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         //Authentification
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+
+        if(currentUser != null && !logoutCheck){
             redirectUser(currentUser);
         }
     }
@@ -67,8 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                                 //Send token for user just logged in
                                 sendNotificationToken(currentUser.getUid());
                                 Map<String,Object> userData = document.getData();
+                                //If it returns then logout
+                                logoutCheck = true;
                                 if(((String)userData.get("status")).equals("client")){
                                     Log.d(TAG,"Redirecting to client");
+
                                     Intent i = new Intent(getApplicationContext(), ClientMenuActivity.class);
                                     startActivity(i);
                                 }
