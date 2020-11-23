@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,8 +54,11 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
         setContentView(R.layout.activity_register_restaurant);
         mAuth = FirebaseAuth.getInstance();
         locationClient = LocationServices.getFusedLocationProviderClient(this);
-        EditText loc = (EditText)findViewById(R.id.editTextLocationRegisterRestaurant);
+
+        TextInputEditText loc = (TextInputEditText)findViewById(R.id.editTextLocationRegisterRestaurant);
         loc.setInputType(InputType.TYPE_NULL);
+
+
     }
 
     private void getLocation() {
@@ -96,15 +102,39 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
         }
     }
     public void submitRegisterRestaurant(View view) {
-        String email = ((TextView)findViewById(R.id.editTextEmailRegisterRestaurant)).getText().toString();
-        String password = ((TextView)findViewById(R.id.editTextPasswordRegisterRestaurant)).getText().toString();
-        String local = ((TextView)findViewById(R.id.editTextLocationRegisterRestaurant)).getText().toString();
-        String res_name = ((TextView)findViewById(R.id.editTextRestaurantNameRegisterRestaurant)).getText().toString();
-        if(locationGotten == null){
+
+        TextInputLayout textInputLayoutEmail = findViewById(R.id.editTextEmailRegisterRestaurant);
+        String email = textInputLayoutEmail.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutPassword = findViewById(R.id.editTextPasswordRegisterRestaurant);
+        String password = textInputLayoutPassword.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutName = findViewById(R.id.editTextRestaurantNameRegisterRestaurant);
+        String res_name = textInputLayoutName.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutConfirmPassword = findViewById(R.id.editTextConfirmPasswordRegisterRestaurant);
+        String confirmPassword = textInputLayoutConfirmPassword.getEditText().getText().toString();
+
+        String local = ((TextInputEditText)findViewById(R.id.editTextLocationRegisterRestaurant)).getText().toString();
+
+        Log.d(TAG, email);
+        Log.d(TAG, password);
+        Log.d(TAG, confirmPassword);
+        Log.d(TAG, res_name);
+        Log.d(TAG, local);
+
+        if (!password.equals(confirmPassword)){
+            Toast.makeText(this,"Passwords don't match", Toast.LENGTH_SHORT).show();
+        }
+        else if(locationGotten == null){
             Toast.makeText(this,"Please accept location permission and wait until we fetch your adddress",Toast.LENGTH_LONG).show();
             return;
         }
-        registerUser(email,password,local,res_name);
+        else {
+            registerUser(email,password,local,res_name);
+        }
+
+
     }
 
     private void registerUser(String email,String password,String localization,String res_name) {
@@ -173,7 +203,7 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
         Log.d(TAG,"Got Address via geocoder"+result.get(0).toString());
         //É isto que se quer,Distrito,result.get(0).getAdminArea()
         //Locality para cidade result.get(0).getLocality()
-        EditText loc = (EditText)findViewById(R.id.editTextLocationRegisterRestaurant);
+        TextInputEditText loc = (TextInputEditText)findViewById(R.id.editTextLocationRegisterRestaurant);
         loc.setText(result.get(0).getLocality());
     }
 

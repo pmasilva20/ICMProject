@@ -3,6 +3,7 @@ package com.example.icmproject.authentification;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -100,8 +103,27 @@ public class RegisterClientActivity extends AppCompatActivity {
 
 
     public void registerClientOnClick(View view) {
-        String email = ((TextView)findViewById(R.id.editTextEmailRegisterClient)).getText().toString();
-        String password = ((TextView)findViewById(R.id.editTextPasswordRegisterClient)).getText().toString();
-        registerUser(email,password);
+
+        TextInputLayout textInputLayoutEmail = findViewById(R.id.editTextEmailRegisterClient);
+        String email = textInputLayoutEmail.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutPassword = findViewById(R.id.editTextPasswordRegisterClient);
+        String password = textInputLayoutPassword.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutConfirmPassword = findViewById(R.id.editTextConfirmPasswordRegisterClient);
+        String confirmPassword = textInputLayoutConfirmPassword.getEditText().getText().toString();
+
+        Log.d(TAG, email);
+        Log.d(TAG, password);
+        Log.d(TAG, confirmPassword);
+
+        if (!password.equals(confirmPassword)){
+            Toast.makeText(this,"Passwords don't match", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
+            registerUser(email,password);
+        }
+
     }
 }
