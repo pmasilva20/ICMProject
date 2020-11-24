@@ -28,4 +28,12 @@
     <string name="service_not_available">Serviço não disponivel</string>
     <string name="invalid_lat_long_used">Invalid coordinates supllied</string>
     <string name="no_address_found">Nenhuma localização encontrada</string>
+
+
+    <string-array name="product_units_array">
+        <item>Kg</item>
+        <item>g</item>
+        <item>l</item>
+        <item>ml</item>
+    </string-array>
 </resources>
