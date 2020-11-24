@@ -1,60 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardUserView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/cardview_dark_background"
-    app:cardCornerRadius="10dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Unidade"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textViewPreço"
-            app:layout_constraintStart_toEndOf="@+id/textViewPreço" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardUserView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewRequesitado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Validade"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
-            app:layout_constraintStart_toEndOf="@+id/textViewValidade"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPreço" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- Media -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:contentDescription="@string/content_description_media"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/apples" />
 
-        <TextView
-            android:id="@+id/textViewPreço"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="TextView"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textViewValidade"
-            app:layout_constraintStart_toEndOf="@+id/textViewValidade" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewValidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Unidade"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textViewPreço" />
+
+                <TextView
+                    android:id="@+id/textViewRequesitado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Validade"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textViewEmail" />
+
+                <TextView
+                    android:id="@+id/textViewPreço"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:text="Quantidade"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/preçoLabel"
+                    app:layout_constraintStart_toEndOf="@+id/preçoLabel" />
+
+                <TextView
+                    android:id="@+id/textViewValidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:text="Nome"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/nomeLabel"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewPreço"
+                    app:layout_constraintStart_toEndOf="@+id/nomeLabel" />
+
+                <TextView
+                    android:id="@+id/nomeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/preçoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Quantity"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nomeLabel" />
+
+                <TextView
+                    android:id="@+id/ValidadeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shelf Life"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewValidade"
+                    app:layout_constraintStart_toEndOf="@+id/textViewValidade"
+                    app:layout_constraintStart_toStartOf="@+id/textViewRequesitado" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
