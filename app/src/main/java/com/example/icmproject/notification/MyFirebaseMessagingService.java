@@ -116,7 +116,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         //Change this icon
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setSmallIcon(R.drawable.ic_stat_name)
                         .setContentTitle(remoteMessage.getNotification().getTitle())
                         .setContentText(remoteMessage.getNotification().getBody())
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getNotification().getBody()))
