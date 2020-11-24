@@ -11,7 +11,31 @@ public class Offer implements Parcelable {
     public double price;
     public String madeBy;
     public String cityCreator;
+    public List<String> requestedBy;
     private String dbId = "";
+    public String confirmedUser;
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "products=" + products +
+                ", price=" + price +
+                ", madeBy='" + madeBy + '\'' +
+                ", cityCreator='" + cityCreator + '\'' +
+                ", requestedBy=" + requestedBy +
+                ", dbId='" + dbId + '\'' +
+                ", confirmedUser='" + confirmedUser + '\'' +
+                ", validade=" + validade +
+                '}';
+    }
+
+    public String getConfirmedUser() {
+        return confirmedUser;
+    }
+
+    public void setConfirmedUser(String confirmedUser) {
+        this.confirmedUser = confirmedUser;
+    }
 
     public void setValidade(Date validade) {
         this.validade = validade;
@@ -23,6 +47,13 @@ public class Offer implements Parcelable {
         return cityCreator;
     }
 
+    public List<String> getRequestedBy() {
+        return requestedBy;
+    }
+
+    public void setRequestedBy(List<String> requestedBy) {
+        this.requestedBy = requestedBy;
+    }
 
     public Offer(){
 
@@ -46,6 +77,8 @@ public class Offer implements Parcelable {
         dbId = in.readString();
         cityCreator = in.readString();
         validade = new Date(in.readLong());
+        requestedBy = in.createStringArrayList();
+        confirmedUser = in.readString();
     }
 
     public static final Creator<Offer> CREATOR = new Creator<Offer>() {
@@ -118,6 +151,8 @@ public class Offer implements Parcelable {
         dest.writeString(dbId);
         dest.writeString(cityCreator);
         dest.writeLong(validade.getTime());
+        dest.writeStringList(requestedBy);
+        dest.writeString(confirmedUser);
     }
 
     public String getDbId() {

@@ -48,6 +48,7 @@ public class SeeOfferViewModel extends ViewModel {
                         for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
                             Log.d(TAG,"Getting document for rest:"+loggedIn.getEmail()+" ->"+doc.getData().toString());
                             Offer of = doc.toObject(Offer.class);
+                            Log.w(TAG,"offer"+of);
                             of.setDbId(doc.getId());
                             offersList.add(of);
                         }

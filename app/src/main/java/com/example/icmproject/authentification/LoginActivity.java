@@ -51,9 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         //Authentification
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser != null && !logoutCheck){
-            redirectUser(currentUser);
-        }
+//        if(currentUser != null && !logoutCheck){
+//            redirectUser(currentUser);
+//        }
     }
 
     private void redirectUser(FirebaseUser currentUser) {

@@ -2,6 +2,8 @@ package com.example.icmproject.restaurantSeeOffer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icmproject.Offer;
@@ -26,11 +29,13 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
     private SeeOfferAdapter adapter = this;
     public List<Offer> offerList;
     private LayoutInflater inflater;
+    private Context context;
 
 
     public SeeOfferAdapter(Context context, List<Offer> listOffers) {
         inflater = LayoutInflater.from(context);
         this.offerList = listOffers;
+        this.context = context;
     }
 
     @NonNull
@@ -48,10 +53,24 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice()));
-        //Replace this with Icons or smt
-        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido falso");
-        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado falso");
+        Log.e(TAG,"Cumprido:"+current.confirmedUser + " Requesitado:"+current.requestedBy);
 
+        //Replace this with Icons or smt
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido");
+        if(current.confirmedUser != null){
+            ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
+
+        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado");
+        if(current.requestedBy != null){
+            ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
         //Set OnClick stuff
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

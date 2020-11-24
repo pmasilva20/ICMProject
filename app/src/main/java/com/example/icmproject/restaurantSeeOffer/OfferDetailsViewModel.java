@@ -142,7 +142,7 @@ public class OfferDetailsViewModel extends ViewModel{
     }
 
     private String generateKey(Offer offer) {
-        String key = String.valueOf(offer.hashCode());
+        String key = String.valueOf(Math.abs(offer.hashCode()));
         Log.d(TAG,"Generating key for Offer:"+offer.getDbId()+ " key:"+key);
         return key;
     }
