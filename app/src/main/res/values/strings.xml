@@ -30,4 +30,5 @@
     <string name="no_address_found">Nenhuma localização encontrada</string>
     <string name="criar_cabaz">Criar Cabaz</string>
     <string name="ver_cabaz">Ver Cabaz</string>
+    <string name="content_description_media">Offer Banner</string>
 </resources>

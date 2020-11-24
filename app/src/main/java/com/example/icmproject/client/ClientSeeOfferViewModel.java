@@ -151,6 +151,8 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
     public void sendRequest(String dbId, View v) {
         db.collection("users").document(mAuth.getCurrentUser().getUid())
                 .update("requestedOffers", FieldValue.arrayUnion(dbId));
+        db.collection("offers").document(dbId)
+                .update("requestedBy", FieldValue.arrayUnion(mAuth.getCurrentUser().getUid()));
         Log.d(TAG,"Updated offer request array for user:"+mAuth.getCurrentUser().getUid());
         //Update UI
         updateReserveButtonsUI((Button) v);
