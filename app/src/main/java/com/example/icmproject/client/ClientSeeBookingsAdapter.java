@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icmproject.Offer;
@@ -27,11 +28,13 @@ public class ClientSeeBookingsAdapter extends RecyclerView.Adapter<ClientSeeBook
     private ClientSeeBookingsAdapter adapter = this;
     public List<Offer> offerList;
     private LayoutInflater inflater;
+    private Context context;
 
 
     public ClientSeeBookingsAdapter(Context context, List<Offer> listOffers) {
         inflater = LayoutInflater.from(context);
         this.offerList = listOffers;
+        this.context = context;
     }
 
     @NonNull
@@ -50,9 +53,20 @@ public class ClientSeeBookingsAdapter extends RecyclerView.Adapter<ClientSeeBook
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice()));
         //Replace this with Icons or smt
-        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido falso");
-        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado falso");
-
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido");
+        if(current.confirmedUser != null){
+            ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
+        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado");
+        if(current.requestedBy != null){
+            ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
         //Set OnClick stuff
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

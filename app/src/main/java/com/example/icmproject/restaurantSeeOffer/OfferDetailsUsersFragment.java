@@ -1,8 +1,10 @@
 package com.example.icmproject.restaurantSeeOffer;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +45,7 @@ public class OfferDetailsUsersFragment extends Fragment {
     private UserListAdapter adapter;
 
     private Offer mParam1;
+    private Context context;
 
     public OfferDetailsUsersFragment() {
         // Required empty public constructor
@@ -60,7 +63,7 @@ public class OfferDetailsUsersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.context = getContext();
         if (getArguments() != null) {
             mParam1 = getArguments().getParcelable(ARG_PARAM1);
         }
@@ -102,6 +105,21 @@ public class OfferDetailsUsersFragment extends Fragment {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         ((TextView)view.findViewById(R.id.textViewOfferDetailsValidade)).setText(format.format(mParam1.getValidade()));
         ((TextView)view.findViewById(R.id.textViewOfferDetailsPreço)).setText(String.valueOf(mParam1.getPrice()));
+
+        ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setText("Cumprido");
+        if(mParam1.confirmedUser != null){
+            ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
+        ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setText("Requesitado");
+        if(mParam1.requestedBy != null){
+            ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
+        }
+        else{
+            ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
+        }
         return view;
     }
 }
