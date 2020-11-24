@@ -39,7 +39,7 @@ public class ClientOfferDetailsActivity extends AppCompatActivity implements Off
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
         fragmentTransaction.add(R.id.fragmentClientOfferDetails,
-                frag).addToBackStack(null).commit();
+                fragProducts).commit();
     }
     @Override
     public void OnChangingToOfferDetailsProductsFragment() {

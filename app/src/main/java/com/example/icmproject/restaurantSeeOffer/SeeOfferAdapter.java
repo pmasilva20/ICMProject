@@ -52,7 +52,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         //Get each view and set stuff
         DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
-        ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice()));
+        ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice())+"€");
         Log.e(TAG,"Cumprido:"+current.confirmedUser + " Requesitado:"+current.requestedBy);
 
         //Replace this with Icons or smt
@@ -76,7 +76,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
             @Override
             public void onClick(View v) {
                 Offer selected = offerList.get(position);
-                //Go to next Acitivty with Parceable Offer
+                //Go to next Activity with Parceable Offer
                 Log.d(TAG,"Onclick "+selected.toString());
                 Intent i = new Intent(v.getContext(), RestaurantOfferDetailsActivity.class);
                 i.putExtra(OFFER_SELECTED,selected);
