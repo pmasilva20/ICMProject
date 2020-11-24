@@ -31,4 +31,10 @@
     <string name="criar_cabaz">Criar Cabaz</string>
     <string name="ver_cabaz">Ver Cabaz</string>
     <string name="content_description_media">Offer Banner</string>
+    <string-array name="product_units_array">
+        <item>Kg</item>
+        <item>g</item>
+        <item>l</item>
+        <item>ml</item>
+    </string-array>
 </resources>

@@ -16,6 +16,7 @@ import com.example.icmproject.RestaurantMenuActivity;
 import com.example.icmproject.restaurantSeeOffer.RestaurantSeeOffersActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -75,7 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                                 logoutCheck = true;
                                 if(((String)userData.get("status")).equals("client")){
                                     Log.d(TAG,"Redirecting to client");
-
                                     Intent i = new Intent(getApplicationContext(), ClientMenuActivity.class);
                                     startActivity(i);
                                 }
@@ -145,8 +145,12 @@ public class LoginActivity extends AppCompatActivity {
     public void loginAccount(View view) {
         //Ask info for log in
         //Try to log in and then redirect user
-        String email = ((TextView)findViewById(R.id.editTextEmailAddressLogin)).getText().toString();
-        String password = ((TextView)findViewById(R.id.editTextPasswordLogin)).getText().toString();
+
+        TextInputLayout textInputLayoutEmail = findViewById(R.id.editTextEmailAddressLogin);
+        String email = textInputLayoutEmail.getEditText().getText().toString();
+
+        TextInputLayout textInputLayoutPassword = findViewById(R.id.editTextPasswordLogin);
+        String password = textInputLayoutPassword.getEditText().getText().toString();
         loginUser(email,password);
     }
 }

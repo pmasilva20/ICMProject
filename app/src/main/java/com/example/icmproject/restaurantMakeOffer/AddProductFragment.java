@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.icmproject.Product;
 import com.example.icmproject.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -91,6 +94,17 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_add_product, container, false);
         Button b = (Button) view.findViewById(R.id.buttonAddProduct);
         b.setOnClickListener(this);
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.editTextProductUnit);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
+                R.array.product_units_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+
         return view;
     }
 
@@ -98,10 +112,26 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         if(v.getId() == R.id.buttonAddProduct){
             //Get TextBoxes info and put them mold
-            String name = ((TextView)getView().findViewById(R.id.editTextProductName)).getText().toString();
-            String unit = ((TextView)getView().findViewById(R.id.editTextProductUnit)).getText().toString();
-            String quantity = ((TextView)getView().findViewById(R.id.editTextProductQuantity)).getText().toString();
-            String shelf_life = ((TextView)getView().findViewById(R.id.editTextProductShelfLife)).getText().toString();
+            //String name = ((TextView)getView().findViewById(R.id.editTextProductName)).getText().toString();
+
+            TextInputLayout textInputLayoutName = getView().findViewById(R.id.editTextProductName);
+            String name = textInputLayoutName.getEditText().getText().toString();
+
+            String unit = ((Spinner)getView().findViewById(R.id.editTextProductUnit)).getSelectedItem().toString();
+
+            //String quantity = ((TextView)getView().findViewById(R.id.editTextProductQuantity)).getText().toString();
+
+            TextInputLayout textInputLayoutQuantity = getView().findViewById(R.id.editTextProductQuantity);
+            String quantity = textInputLayoutQuantity.getEditText().getText().toString();
+
+            //String shelf_life = ((TextView)getView().findViewById(R.id.editTextProductShelfLife)).getText().toString();
+
+            TextInputLayout textInputLayoutShelfLife = getView().findViewById(R.id.editTextProductShelfLife);
+            String shelf_life = textInputLayoutShelfLife.getEditText().getText().toString();
+
+
+
+
             if(name.isEmpty())name = "test";
             if(unit.isEmpty())unit = "grams";
             if(quantity.isEmpty())quantity = "0";

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentification.RegisterClientActivity">
+
+
+<TextView
+android:id="@+id/registerRestaurantTextView"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="24dp"
+android:text="@string/register_restaurant_information"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<EditText
+android:id="@+id/editTextEmailRegisterRestaurant"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="28dp"
+android:layout_marginLeft="28dp"
+android:layout_marginTop="104dp"
+android:ems="10"
+android:hint="@string/email_tooltip"
+android:inputType="textEmailAddress"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/registerRestaurantTextView" />
+
+<EditText
+android:id="@+id/editTextPasswordRegisterRestaurant"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="28dp"
+android:layout_marginLeft="28dp"
+android:layout_marginTop="32dp"
+android:ems="10"
+android:hint="@string/password_tooltip"
+android:inputType="textPassword"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegisterRestaurant" />
+
+<EditText
+android:id="@+id/editTextRestaurantNameRegisterRestaurant"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="28dp"
+android:layout_marginLeft="28dp"
+android:layout_marginTop="32dp"
+android:ems="10"
+android:hint="@string/restaurant_name_tooltip"
+android:inputType="textPersonName"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextLocationRegisterRestaurant" />
+
+<EditText
+android:id="@+id/editTextLocationRegisterRestaurant"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="28dp"
+android:layout_marginLeft="28dp"
+android:layout_marginTop="32dp"
+android:ems="10"
+android:hint="@string/location_tooltip"
+android:onClick="enterLocationOnClick"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegisterRestaurant" />
+
+<Button
+android:id="@+id/submitButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="36dp"
+android:layout_marginLeft="36dp"
+android:layout_marginTop="60dp"
+android:onClick="submitRegisterRestaurant"
+android:text="@string/register"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextRestaurantNameRegisterRestaurant" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
