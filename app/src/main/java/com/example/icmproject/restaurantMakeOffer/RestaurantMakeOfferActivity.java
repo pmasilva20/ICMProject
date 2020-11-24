@@ -1,5 +1,6 @@
 package com.example.icmproject.restaurantMakeOffer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,17 +9,20 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.icmproject.Product;
 import com.example.icmproject.R;
+import com.example.icmproject.restaurantSeeOffer.RestaurantSeeOffersActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class RestaurantMakeOfferActivity extends AppCompatActivity {
+public class RestaurantMakeOfferActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     ProductListFragment frag;
     private MakeOfferViewModel vm;
-
+    protected BottomNavigationView navigationView;
     private static final String TAG = "restMakeOfferActivity";
     public static final int ADD_PRODUCT = 1;
 
@@ -26,6 +30,10 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_make_offer);
+        navigationView = findViewById(R.id.bottom_navigation_restaurant_make_offer);
+        Log.e(TAG,navigationView.toString());
+        navigationView.setOnNavigationItemSelectedListener(this);
+        updateNavigationBarState();
         //Setup ViewModel
         vm = new ViewModelProvider(this).get(MakeOfferViewModel.class);
         frag = ProductListFragment.newInstance("ex","ex2");
@@ -36,6 +44,43 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragmentContainerMakeOffer,
                 frag).addToBackStack(null).commit();
 
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Log.e(TAG,"onNavigationItemSelected");
+        navigationView.postDelayed(() -> {
+            int itemId = item.getItemId();
+            if(itemId == R.id.page_make_offer){
+                startActivity(new Intent(this, RestaurantMakeOfferActivity.class));
+                Log.e(TAG,""+itemId);
+            }
+            else if(itemId == R.id.page_see_offer){
+                startActivity(new Intent(this, RestaurantSeeOffersActivity.class));
+                Log.e(TAG,""+itemId);
+            }
+            finish();
+        }, 300);
+        return true;
+    }
+
+    private void updateNavigationBarState() {
+        int actionId = getNavigationMenuItemId();
+        selectBottomNavigationBarItem(actionId);
+    }
+
+    void selectBottomNavigationBarItem(int itemId) {
+        MenuItem item = navigationView.getMenu().findItem(itemId);
+        item.setChecked(true);
+    }
+
+
+    protected int getContentViewId() {
+        return R.layout.activity_restaurant_make_offer;
+    }
+
+
+    protected int getNavigationMenuItemId() {
+        return R.id.page_make_offer;
     }
 
     public void insertProductOnClick(View view) {

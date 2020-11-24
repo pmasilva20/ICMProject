@@ -28,4 +28,6 @@
     <string name="service_not_available">Serviço não disponivel</string>
     <string name="invalid_lat_long_used">Invalid coordinates supllied</string>
     <string name="no_address_found">Nenhuma localização encontrada</string>
+    <string name="criar_cabaz">Criar Cabaz</string>
+    <string name="ver_cabaz">Ver Cabaz</string>
 </resources>

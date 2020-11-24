@@ -25,17 +25,18 @@
         android:text="Novo Produto"
         app:layout_constraintBottom_toTopOf="@+id/buttonConfirmOffer"
         app:layout_constraintEnd_toEndOf="@+id/buttonConfirmOffer"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonConfirmOffer"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:onClick="insertOfferInDB"
         android:text="Confirmar Cabaz"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_restaurant_make_offer"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -44,8 +45,16 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_restaurant_make_offer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonConfirmOffer"
         app:layout_constraintTop_toTopOf="@+id/buttonInsertProduct" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_restaurant_make_offer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_restaurant" />
 </androidx.constraintlayout.widget.ConstraintLayout>

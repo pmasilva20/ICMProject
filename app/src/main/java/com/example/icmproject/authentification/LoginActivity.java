@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.icmproject.ClientMenuActivity;
 import com.example.icmproject.R;
 import com.example.icmproject.RestaurantMenuActivity;
+import com.example.icmproject.restaurantSeeOffer.RestaurantSeeOffersActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Log.d(TAG,"Redirecting to restaurant");
-                                    Intent i = new Intent(getApplicationContext(), RestaurantMenuActivity.class);
+                                    Intent i = new Intent(getApplicationContext(), RestaurantSeeOffersActivity.class);
                                     startActivity(i);
                                 }
                             }
