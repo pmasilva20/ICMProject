@@ -110,17 +110,17 @@ public class OfferDetailsViewModel extends ViewModel{
                                     if(task.isSuccessful()){
                                         String rest_name = (String) task.getResult().get("restaurant_name");
                                         //String receiverToken,String title,String body,String dataValue
-                                        body = String.format("O teu pedido de valor %s€ foi confirmado com sucesso\n" +
-                                                "O teu código de validação é o seguinte:%s\n" +
-                                                "Por favor mostra isto ao ir buscar a tua entrega ao restaurante %s",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated,rest_name);
+                                        body = String.format("Your order of value %s€ has been confirmed with success\n" +
+                                                "Your validation key is the following:%s\n" +
+                                                "Please show this key when you get your order at the restaurant %s",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated,rest_name);
                                     }
                                     else {
                                         //String receiverToken,String title,String body,String dataValue
-                                        body = String.format("O teu pedido de valor %s€ foi confirmado com sucesso\n" +
-                                                "O teu código de validação é o seguinte:%s\n" +
-                                                "Por favor mostra isto ao ir buscar a tua entrega",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated);
+                                        body = String.format("Your order of value %s€ has been confirmed with success\n" +
+                                                "Your validation key is the following:%ss\n" +
+                                                "Please show this key when you get your order",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated);
                                     }
-                                    new NotificationManager().execute(token,"O teu pedido foi confirmado!",body,"");
+                                    new NotificationManager().execute(token,"Your order has been confirmed!",body,"");
                                     //Put key in DB
                                     db.collection("offers").document(offerSelected.getDbId()).
                                             update("confirmationKey",keyGenerated,"confirmedUser",userUid);
@@ -131,7 +131,7 @@ public class OfferDetailsViewModel extends ViewModel{
                             });
                         }
                         else{
-                            Toast.makeText(context,"Erro ao confirmar o token enviado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Error trying to confirm sent key,please try again", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -231,9 +231,9 @@ private void sendOfferConfirmedToRemainingUsers(String userUid){
                     if(task.isSuccessful()){
                         String token = (String)task.getResult().get("notificationToken");
                         //String receiverToken,String title,String body,String dataValue
-                        String body = String.format("Pedimos desculpa,mas o cabaz que requesitou" +
-                                " já não se encontra disponivel");
-                        new NotificationManager().execute(token,"Pedido cancelado",body,"");
+                        String body = String.format("We are very sorry,but it seems the offer you requested is" +
+                                " no longer available");
+                        new NotificationManager().execute(token,"Canceled order",body,"");
                         Log.d(TAG,"Users who requested were notified");
                     }
                 }

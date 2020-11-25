@@ -106,14 +106,14 @@ public class OfferDetailsUsersFragment extends Fragment {
         ((TextView)view.findViewById(R.id.textViewOfferDetailsValidade)).setText(format.format(mParam1.getValidade()));
         ((TextView)view.findViewById(R.id.textViewOfferDetailsPreço)).setText(String.valueOf(mParam1.getPrice()));
 
-        ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setText("Cumprido");
+        ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setText("Fulfilled");
         if(mParam1.confirmedUser != null){
             ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }
         else{
             ((TextView)view.findViewById(R.id.textViewOfferDetailsCumprido)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
         }
-        ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setText("Requesitado");
+        ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setText("Requested");
         if(mParam1.requestedBy != null){
             ((TextView)view.findViewById(R.id.textViewOfferDetailsRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }

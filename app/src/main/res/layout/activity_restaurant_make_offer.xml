@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:onClick="insertProductOnClick"
-        android:text="Novo Produto"
+        android:text="@string/new_product"
         app:layout_constraintBottom_toTopOf="@+id/buttonConfirmOffer"
         app:layout_constraintEnd_toEndOf="@+id/buttonConfirmOffer"
         app:layout_constraintHorizontal_bias="0.642"
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:onClick="insertOfferInDB"
-        android:text="Confirmar Cabaz"
+        android:text="@string/confirm_offer"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_restaurant_make_offer"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,7 +61,7 @@
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço do Cabaz:"
+        android:text="@string/price_of_offer"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonInsertProduct"
         app:layout_constraintEnd_toEndOf="@+id/editTextPriceOffer"

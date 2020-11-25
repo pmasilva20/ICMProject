@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:onClick="makeNewOffer"
-        android:text="Criar Cabaz"
+        android:text="@string/make_offer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="seeNewOffer"
-        android:text="Ver Cabazes"
+        android:text="@string/see_offers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />

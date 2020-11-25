@@ -53,14 +53,14 @@ public class ClientSeeBookingsAdapter extends RecyclerView.Adapter<ClientSeeBook
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice()));
         //Replace this with Icons or smt
-        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido");
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Fulfilled");
         if(current.confirmedUser != null){
             ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }
         else{
             ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
         }
-        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado");
+        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requested");
         if(current.requestedBy != null){
             ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }
