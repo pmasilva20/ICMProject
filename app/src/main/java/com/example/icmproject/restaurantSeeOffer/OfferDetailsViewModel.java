@@ -102,7 +102,7 @@ public class OfferDetailsViewModel extends ViewModel{
                         if(task.isSuccessful()){
                             String token = (String)task.getResult().get("notificationToken");
                             String keyGenerated = generateKey(offerSelected);
-                            db.collection("offers").document(offerSelected.madeBy).get()
+                            db.collection("users").document(offerSelected.madeBy).get()
                                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -112,13 +112,13 @@ public class OfferDetailsViewModel extends ViewModel{
                                         //String receiverToken,String title,String body,String dataValue
                                         body = String.format("Your order of value %s€ has been confirmed with success\n" +
                                                 "Your validation key is the following:%s\n" +
-                                                "Please show this key when you get your order at the restaurant %s",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated,rest_name);
+                                                "Please show this key when you get your order at the restaurant %s",offerSelected.getPrice(),keyGenerated,rest_name);
                                     }
                                     else {
                                         //String receiverToken,String title,String body,String dataValue
                                         body = String.format("Your order of value %s€ has been confirmed with success\n" +
-                                                "Your validation key is the following:%ss\n" +
-                                                "Please show this key when you get your order",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated);
+                                                "Your validation key is the following:%s\n" +
+                                                "Please show this key when you get your order",offerSelected.getPrice(),keyGenerated);
                                     }
                                     new NotificationManager().execute(token,"Your order has been confirmed!",body,"");
                                     //Put key in DB

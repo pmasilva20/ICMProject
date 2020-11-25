@@ -56,7 +56,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         Log.e(TAG,"Cumprido:"+current.confirmedUser + " Requesitado:"+current.requestedBy);
 
         //Replace this with Icons or smt
-        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Cumprido");
+        ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Fulfilled");
         if(current.confirmedUser != null){
             ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }
@@ -64,7 +64,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
             ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setTextColor(ContextCompat.getColor(context,R.color.red_wrong));
         }
 
-        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requesitado");
+        ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText("Requested");
         if(current.requestedBy != null){
             ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setTextColor(ContextCompat.getColor(context,R.color.green_lime));
         }
