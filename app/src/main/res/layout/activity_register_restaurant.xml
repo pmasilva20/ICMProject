@@ -9,8 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="350dp"
-        android:layout_height="600dp"
-        app:cardElevation="20dp"
+        android:layout_height="510dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:text="Choose your email"
                 android:textSize="15sp" />
@@ -50,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:text="Choose your password"
                 android:textSize="15sp" />
@@ -78,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:text="Confirm your password"
                 android:textSize="15sp" />
@@ -107,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:text="Restaurant Name"
                 android:textSize="15sp" />
@@ -133,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:text="Get Restaurant Location"
                 android:textSize="15sp" />
@@ -157,21 +156,21 @@
                     android:onClick="enterLocationOnClick"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-<!--
-            <Button
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/editTextLocationRegisterRestaurant"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Get Location"
-                android:textAllCaps="false"
-                android:onClick="enterLocationOnClick"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" /> -->
+            <!--
+                        <Button
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/editTextLocationRegisterRestaurant"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Get Location"
+                            android:textAllCaps="false"
+                            android:onClick="enterLocationOnClick"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" /> -->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -193,6 +192,8 @@
         android:layout_height="wrap_content"
         android:text="Register as Restaurant"
         android:textSize="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"

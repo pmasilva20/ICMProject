@@ -58,7 +58,9 @@ public class SeeOfferViewModel extends ViewModel {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                            if (adapter != null)adapter.notifyDataSetChanged();
+                            Log.d(TAG,"Adapter changing");
+                            adapter.offerList = offersList;
+                            adapter.notifyDataSetChanged();
                         }
                     }
                 });

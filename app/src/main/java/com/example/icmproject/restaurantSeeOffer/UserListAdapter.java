@@ -31,10 +31,12 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     public List<UserView> userList;
     private LayoutInflater inflater;
     private ViewModel vm;
+    private Context context;
 
     public UserListAdapter(Context context, List<UserView> userList) {
         inflater = LayoutInflater.from(context);
         this.userList = userList;
+        this.context = context;
     }
 
     @NonNull
@@ -58,9 +60,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
                 //Make some call to send notification to user
                 //Lock all other options
                 Log.d(TAG,"Onclick,selected to lock this user: "+current.getDbId());
-                ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId(),v);
+                ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId(),v,context);
             }
         });
+        ((OfferDetailsViewModel)vm).checkUpdateUI();
     }
 
     @Override

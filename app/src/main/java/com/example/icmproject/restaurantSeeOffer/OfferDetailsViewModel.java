@@ -40,6 +40,7 @@ public class OfferDetailsViewModel extends ViewModel{
     private List<View> userViews = new ArrayList<>();
     private View tokenInputView;
     private View tokenButtonView;
+    private OfferDetailsViewModel vm = this;
 
 
     public Offer getOfferSelected() {
@@ -92,7 +93,7 @@ public class OfferDetailsViewModel extends ViewModel{
 
     }
 
-    public void confirmRequest(String userUid, View view){
+    public void confirmRequest(String userUid, View view, Context context){
         //I have user ID,get from here user notification Token,generate a key for this Offer and send notification
         db.collection("users").document(userUid).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -101,17 +102,36 @@ public class OfferDetailsViewModel extends ViewModel{
                         if(task.isSuccessful()){
                             String token = (String)task.getResult().get("notificationToken");
                             String keyGenerated = generateKey(offerSelected);
-                            //String receiverToken,String title,String body,String dataValue
-                            String body = String.format("O teu pedido de valor %s foi confirmado com sucesso\n" +
-                                    "O teu código de validação é o seguinte:%s\n" +
-                                    "Por favor mostra isto ao ir buscar a entrega",offerSelected.getPrice(),keyGenerated);
-                            new NotificationManager().execute(token,"O teu pedido foi confirmado!",body,"");
-                            //Put key in DB
-                            db.collection("offers").document(offerSelected.getDbId()).
-                                    update("confirmationKey",keyGenerated,"confirmedUser",userUid);
-                            //Update UI
-                            Log.d(TAG,"Gonna update UI now");
-                            updateUIConfirmedUser();
+                            db.collection("offers").document(offerSelected.madeBy).get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    String body;
+                                    if(task.isSuccessful()){
+                                        String rest_name = (String) task.getResult().get("restaurant_name");
+                                        //String receiverToken,String title,String body,String dataValue
+                                        body = String.format("O teu pedido de valor %s€ foi confirmado com sucesso\n" +
+                                                "O teu código de validação é o seguinte:%s\n" +
+                                                "Por favor mostra isto ao ir buscar a tua entrega ao restaurante %s",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated,rest_name);
+                                    }
+                                    else {
+                                        //String receiverToken,String title,String body,String dataValue
+                                        body = String.format("O teu pedido de valor %s€ foi confirmado com sucesso\n" +
+                                                "O teu código de validação é o seguinte:%s\n" +
+                                                "Por favor mostra isto ao ir buscar a tua entrega",offerSelected.madeBy,offerSelected.getPrice(),keyGenerated);
+                                    }
+                                    new NotificationManager().execute(token,"O teu pedido foi confirmado!",body,"");
+                                    //Put key in DB
+                                    db.collection("offers").document(offerSelected.getDbId()).
+                                            update("confirmationKey",keyGenerated,"confirmedUser",userUid);
+                                    //Update UI
+                                    Log.d(TAG,"Gonna update UI now");
+                                    updateUIConfirmedUser();
+                                }
+                            });
+                        }
+                        else{
+                            Toast.makeText(context,"Erro ao confirmar o token enviado", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -142,7 +162,7 @@ public class OfferDetailsViewModel extends ViewModel{
     }
 
     private String generateKey(Offer offer) {
-        String key = String.valueOf(Math.abs(offer.hashCode()));
+        String key = String.valueOf(Math.abs(offer.hashCode()) % 100000);
         Log.d(TAG,"Generating key for Offer:"+offer.getDbId()+ " key:"+key);
         return key;
     }
@@ -183,9 +203,11 @@ public class OfferDetailsViewModel extends ViewModel{
                             if (input.equals(keyGotten)){
                                 //Key checks out
                                 //TODO:Maybe change to take it out?
+
                                 db.collection("offers").document(offerSelected.getDbId())
                                         .update("offerConfirmed",true);
                                 Log.d(TAG,"Updated offer to be confirmed");
+                                vm.checkUpdateUI();
                                 for(UserView user : usersWhoRequested) {
                                     sendOfferConfirmedToRemainingUsers(user.getDbId());
                                 }

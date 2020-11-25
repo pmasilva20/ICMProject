@@ -58,6 +58,7 @@ public class RestaurantOfferDetailsActivity extends AppCompatActivity implements
                 .beginTransaction();
         fragmentTransaction.replace(R.id.fragmentRestaurantOfferDetails,
                 fragProducts).addToBackStack(null).commit();
+
     }
 
     public void seeProductsOnClick(View view) {

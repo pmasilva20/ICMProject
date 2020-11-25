@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +43,7 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity implements Bo
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainerMakeOffer,
-                frag).addToBackStack(null).commit();
+                frag).commit();
 
     }
     @Override
@@ -111,6 +112,18 @@ public class RestaurantMakeOfferActivity extends AppCompatActivity implements Bo
         String priceText = ((TextView)findViewById(R.id.editTextPriceOffer)).getText().toString();
         if(priceText.isEmpty()) priceText = "0.0";
         double price = Double.parseDouble(priceText);
-        vm.putOfferInDB(price);
+        vm.putOfferInDB(price,getApplicationContext());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                restartActivity();
+            }
+        },3000);
+
+    }
+    private void restartActivity(){
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }

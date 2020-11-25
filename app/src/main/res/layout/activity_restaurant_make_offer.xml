@@ -44,12 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_restaurant_make_offer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonConfirmOffer"
-        app:layout_constraintTop_toTopOf="@+id/buttonInsertProduct" />
+        app:layout_constraintStart_toEndOf="@+id/buttonConfirmOffer" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_restaurant_make_offer"
@@ -57,4 +56,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_restaurant" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preço do Cabaz:"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonInsertProduct"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPriceOffer"
+        app:layout_constraintStart_toStartOf="@+id/editTextPriceOffer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

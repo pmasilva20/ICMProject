@@ -15,29 +15,32 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:text="Add Product"
             android:textSize="25dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toTopOf="@id/textView1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.541" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Product Name"
             android:textSize="15sp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.205"
-            android:layout_marginStart="10dp" />
+            app:layout_constraintVertical_bias="0.205" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextProductName"
@@ -88,7 +91,7 @@
 
 
         <TextView
-            android:id="@+id/textViewOfferDetailsCumprido"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -110,13 +113,14 @@
             android:layout_marginRight="10dp"
             android:hint="Quantity"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@id/textViewOfferDetailsCumprido"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
             app:startIconContentDescription="Quantity"
             app:startIconDrawable="@drawable/ic_quantity_icon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,7 +162,8 @@
             android:id="@+id/buttonAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/confirmar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

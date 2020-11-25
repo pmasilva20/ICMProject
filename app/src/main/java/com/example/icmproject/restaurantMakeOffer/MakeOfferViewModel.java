@@ -1,6 +1,8 @@
 package com.example.icmproject.restaurantMakeOffer;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -36,7 +38,7 @@ public class MakeOfferViewModel  extends ViewModel {
         productList.add(p);
     }
 
-    public void putOfferInDB(double price) {
+    public void putOfferInDB(double price, Context applicationContext) {
         auth = FirebaseAuth.getInstance();
         List<Product> lst = productList;
         db.collection("users")
@@ -55,12 +57,17 @@ public class MakeOfferViewModel  extends ViewModel {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
                                             Log.d(TAG, "Offer added with ID: " + documentReference.getId());
+                                            Log.d(TAG, "Offer data: "+cabaz);
+                                            //Toast and redirect backwards
+                                            Toast.makeText(applicationContext,"Offer added with success",Toast.LENGTH_LONG).show();
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.w(TAG, "Error adding document", e);
+                                            Toast.makeText(applicationContext,"Error adding offer,please check your connection",Toast.LENGTH_LONG).show();
                                         }
                                     });
                         }

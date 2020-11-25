@@ -42,6 +42,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTask.OnTaskCompleted{
 
@@ -179,10 +180,18 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
                             //Check for offer in requestedOffers,if yes,grey button
-                            List<Offer> offerList = (List<Offer>)task.getResult().get("requestedOffers");
-                            if(offerList.contains(current)){
-                                Log.d(TAG,"Updating buttons already requested");
-                                updateReserveButtonsUI(reserveButton);
+                            Map<String, Object> map =  task.getResult().getData();
+                            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                                if (entry.getKey().equals("requestedOffers")) {
+                                    Log.d(TAG, entry.getValue().toString());
+                                    List<String> offerList = (List<String>) entry.getValue();
+                                    for(String offer : offerList){
+                                        if(offer.equals(current.getDbId())){
+                                            Log.d(TAG,"Updating buttons already requested");
+                                            updateReserveButtonsUI(reserveButton);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
