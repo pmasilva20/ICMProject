@@ -10,9 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Product;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

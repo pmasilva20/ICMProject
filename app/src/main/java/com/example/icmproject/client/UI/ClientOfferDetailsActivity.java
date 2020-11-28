@@ -1,19 +1,19 @@
 package com.example.icmproject.client.UI;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.Bundle;
-import android.view.View;
-
-import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.R;
-import com.example.icmproject.restaurant.restaurantSeeOffer.UI.OfferDetailsProductsFragment;
-import com.example.icmproject.restaurant.restaurantSeeOffer.UI.OfferDetailsUsersFragment;
+import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.restaurant.restaurantSeeOffer.Model.OfferDetailsViewModel;
 import com.example.icmproject.restaurant.restaurantSeeOffer.Model.SeeOfferAdapter;
+import com.example.icmproject.restaurant.restaurantSeeOffer.UI.OfferDetailsProductsFragment;
+import com.example.icmproject.restaurant.restaurantSeeOffer.UI.OfferDetailsUsersFragment;
 
 public class ClientOfferDetailsActivity extends AppCompatActivity implements OfferDetailsUsersFragment.OnChangingToOfferDetailsProductsFragment{
 

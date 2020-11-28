@@ -2,15 +2,14 @@ package com.example.icmproject.authentification;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.icmproject.client.UI.ClientMenuActivity;
 import com.example.icmproject.R;
+import com.example.icmproject.client.UI.ClientMenuActivity;
 import com.example.icmproject.restaurant.restaurantSeeOffer.UI.RestaurantSeeOffersActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

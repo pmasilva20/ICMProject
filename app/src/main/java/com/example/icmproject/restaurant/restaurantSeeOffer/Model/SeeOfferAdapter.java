@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.restaurant.restaurantSeeOffer.UI.RestaurantOfferDetailsActivity;
 
 import java.text.DateFormat;

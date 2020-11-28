@@ -2,6 +2,10 @@ package com.example.icmproject.restaurant.restaurantSeeOffer.UI;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -10,13 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.restaurant.restaurantSeeOffer.Model.OfferDetailsViewModel;
 import com.example.icmproject.restaurant.restaurantSeeOffer.Model.UserListAdapter;
 

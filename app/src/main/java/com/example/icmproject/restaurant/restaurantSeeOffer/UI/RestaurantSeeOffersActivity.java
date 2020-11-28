@@ -1,13 +1,13 @@
 package com.example.icmproject.restaurant.restaurantSeeOffer.UI;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.icmproject.R;
 import com.example.icmproject.restaurant.restaurantMakeOffer.UI.RestaurantMakeOfferActivity;

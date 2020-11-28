@@ -1,11 +1,5 @@
 package com.example.icmproject.restaurant.restaurantMakeOffer.UI;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,8 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.icmproject.commonDataModel.Product;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.restaurant.restaurantMakeOffer.Model.MakeOfferViewModel;
 import com.example.icmproject.restaurant.restaurantSeeOffer.UI.RestaurantSeeOffersActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

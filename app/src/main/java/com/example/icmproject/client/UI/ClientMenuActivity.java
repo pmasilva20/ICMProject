@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.icmproject.R;
-import com.example.icmproject.client.UI.ClientBookingsFragment;
-import com.example.icmproject.client.UI.ClientCabazesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

@@ -1,19 +1,14 @@
 package com.example.icmproject.restaurant;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.icmproject.R;
-import com.example.icmproject.notification.NotificationManager;
 import com.example.icmproject.restaurant.restaurantMakeOffer.UI.RestaurantMakeOfferActivity;
 import com.example.icmproject.restaurant.restaurantSeeOffer.UI.RestaurantSeeOffersActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class RestaurantMenuActivity extends AppCompatActivity {
 

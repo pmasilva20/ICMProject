@@ -2,9 +2,6 @@ package com.example.icmproject.restaurant.restaurantMakeOffer.UI;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.example.icmproject.commonDataModel.Product;
+import androidx.fragment.app.Fragment;
+
 import com.example.icmproject.R;
-import com.example.icmproject.restaurant.restaurantMakeOffer.Model.MakeOfferViewModel;
+import com.example.icmproject.commonDataModel.Product;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class AddProductFragment extends Fragment implements View.OnClickListener {

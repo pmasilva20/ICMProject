@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModel;
 
+import com.example.icmproject.R;
 import com.example.icmproject.commonDataModel.Offer;
 import com.example.icmproject.commonDataModel.Product;
-import com.example.icmproject.R;
 import com.example.icmproject.commonDataModel.UserView;
 import com.example.icmproject.notification.NotificationManager;
 import com.google.android.gms.tasks.OnCompleteListener;

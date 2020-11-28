@@ -1,6 +1,9 @@
 package com.example.icmproject.restaurant.restaurantMakeOffer.UI;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,12 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.restaurant.restaurantMakeOffer.Model.MakeOfferViewModel;
 import com.example.icmproject.restaurant.restaurantMakeOffer.Model.ProductListAdapter;
 

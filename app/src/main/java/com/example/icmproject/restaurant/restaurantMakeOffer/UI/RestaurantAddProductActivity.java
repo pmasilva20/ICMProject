@@ -1,15 +1,15 @@
 package com.example.icmproject.restaurant.restaurantMakeOffer.UI;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.R;
+import com.example.icmproject.commonDataModel.Product;
 
 public class RestaurantAddProductActivity extends AppCompatActivity implements  AddProductFragment.OnProductConfirmedListener{
 
