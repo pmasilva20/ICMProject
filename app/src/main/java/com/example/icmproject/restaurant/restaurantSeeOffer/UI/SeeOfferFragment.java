@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +24,9 @@ public class SeeOfferFragment extends Fragment {
 
 
     public SeeOfferFragment() {
-        // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static SeeOfferFragment newInstance() {
         SeeOfferFragment fragment = new SeeOfferFragment();
         return fragment;
@@ -43,24 +40,17 @@ public class SeeOfferFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewSeeOffer);
-        // Create an adapter and supply the data to be displayed.
-        if(vm.getListOffers() == null) Log.e("NULL","vm wrong");
         adapter = new SeeOfferAdapter(getContext(), vm.getListOffers());
-        // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
-        // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //Load offers of DB
         vm.loadOffersForRestaurant(adapter);
     }
 
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //Set ViewModel
         vm = new ViewModelProvider(requireActivity()).get(SeeOfferViewModel.class);
     }
 
@@ -69,7 +59,6 @@ public class SeeOfferFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_see_offer, container, false);
-        //Setup Offer stuff here
 
         return view;
     }

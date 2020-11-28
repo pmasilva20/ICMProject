@@ -2,7 +2,6 @@ package com.example.icmproject.restaurant.restaurantSeeOffer.Model;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,6 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
         DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
         ((TextView)holder.productView.findViewById(R.id.textViewValidade)).setText(dt.format(current.getValidade()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getPrice())+"€");
-        Log.e(TAG,"Cumprido:"+current.confirmedUser + " Requesitado:"+current.requestedBy);
 
         //Replace this with Icons or smt
         ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText("Fulfilled");
@@ -75,8 +73,7 @@ public class SeeOfferAdapter extends RecyclerView.Adapter<SeeOfferAdapter.OfferV
             @Override
             public void onClick(View v) {
                 Offer selected = offerList.get(position);
-                //Go to next Activity with Parceable Offer
-                Log.d(TAG,"Onclick "+selected.toString());
+                //Go to next Activity with Parcelable Offer
                 Intent i = new Intent(v.getContext(), RestaurantOfferDetailsActivity.class);
                 i.putExtra(OFFER_SELECTED,selected);
                 v.getContext().startActivity(i);

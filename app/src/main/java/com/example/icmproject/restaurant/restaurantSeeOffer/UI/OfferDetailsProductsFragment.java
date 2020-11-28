@@ -25,17 +25,13 @@ public class OfferDetailsProductsFragment extends Fragment {
     private ProductListAdapter adapter;
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public OfferDetailsProductsFragment() {
-        // Required empty public constructor
     }
 
 
@@ -60,13 +56,9 @@ public class OfferDetailsProductsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewProductList);
-        // Create an adapter and supply the data to be displayed.
         adapter = new ProductListAdapter(getContext(), vm.getListProductsForOffer());
-        // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
-        // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
@@ -79,7 +71,6 @@ public class OfferDetailsProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_list, container, false);
     }
 }

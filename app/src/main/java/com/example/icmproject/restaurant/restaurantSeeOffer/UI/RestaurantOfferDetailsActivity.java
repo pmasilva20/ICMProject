@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.icmproject.commonDataModel.Offer;
@@ -28,12 +27,9 @@ public class RestaurantOfferDetailsActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_restaurant_offer_details);
         vm = new ViewModelProvider(this).get(OfferDetailsViewModel.class);
         Offer offerSelected = getIntent().getParcelableExtra(SeeOfferAdapter.OFFER_SELECTED);
-        Log.d(TAG,offerSelected.toString());
         vm.setOfferSelected(offerSelected);
-        //Set Fragment on FrameLayout
         frag = OfferDetailsUsersFragment.newInstance(offerSelected);
         fragProducts = OfferDetailsProductsFragment.newInstance("arg1","arg2");
-        // Get the FragmentManager and start a transaction.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
@@ -51,8 +47,6 @@ public class RestaurantOfferDetailsActivity extends AppCompatActivity implements
 
     @Override
     public void OnChangingToOfferDetailsProductsFragment() {
-        //When button is clicked call this
-        // Get the FragmentManager and start a transaction.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
@@ -66,7 +60,6 @@ public class RestaurantOfferDetailsActivity extends AppCompatActivity implements
     }
 
     public void confirmKeyOnClick(View view) {
-        //Tell VM to make querie,if wrong Toast,if yes,Offer iis done for
         vm.checKeyAuth(this);
     }
 }

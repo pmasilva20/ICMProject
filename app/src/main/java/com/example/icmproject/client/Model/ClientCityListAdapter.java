@@ -1,7 +1,6 @@
 package com.example.icmproject.client.Model;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +40,12 @@ public class ClientCityListAdapter extends RecyclerView.Adapter<ClientCityListAd
 
     @Override
     public void onBindViewHolder(@NonNull CityItemViewHolder holder, int position) {
-        //Get each view and set stuff
         String city = citiesList.get(position);
         ((Button)holder.itemView.findViewById(R.id.textViewCityItem)).setText(city);
         //Set OnClick stuff
         ((Button)holder.itemView.findViewById(R.id.textViewCityItem)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"Clicked city:"+((Button)v).getText());
                 citySelected = (String) ((Button)v).getText();
                 vm.loadOffersForClient(adapter);
             }

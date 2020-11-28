@@ -8,10 +8,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.location.Address;
 import android.location.Location;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -39,13 +37,12 @@ import java.util.Map;
 
 public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTask.OnTaskCompleted{
 
-    private static final String TAG = "ClientSeeOfferVM";
+    private static final String TAG = "clientSeeOfferVM";
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private List<Offer> offersList;
     private List<String> cityList;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView mLocationTextView;
     private ClientCityListAdapter adapter;
     private ClientSeeOfferAdapter adapterOffer;
     private Location locationGotten;
@@ -74,7 +71,6 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
-                            Log.d(TAG,"Doc:"+doc.getData().toString());
                             Offer of = doc.toObject(Offer.class);
                             of.setDbId(doc.getId());
                             offersList.add(of);
@@ -102,7 +98,6 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
             ActivityCompat.requestPermissions(act,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         }
-        Log.d(TAG, "getLocation: permissions already granted");
         locationClient.getLastLocation().addOnSuccessListener(
                 new OnSuccessListener<Location>() {
                     @Override
@@ -110,9 +105,6 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
                         if (location != null) {
                             locationGotten = location;
                             new FetchAddressTask(con, ClientSeeOfferViewModel.this).execute(location);
-                            Log.d(TAG, locationGotten.toString());
-                        } else {
-                            Log.e(TAG, "No Location could be Retrieved");
                         }
                     }
                 });
@@ -124,8 +116,6 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
 
     @Override
     public void onTaskCompleted(List<Address> result) {
-        Log.d(TAG,"Got Address via geocoder"+result.get(0).getLocality());
-        //have Address,see if on list,if not put it there,change select to it
         if(!cityList.contains(result.get(0).getLocality())){
             cityList.add(result.get(0).getLocality());
             adapter.notifyDataSetChanged();
@@ -147,14 +137,12 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
                 .update("requestedOffers", FieldValue.arrayUnion(dbId));
         db.collection("offers").document(dbId)
                 .update("requestedBy", FieldValue.arrayUnion(mAuth.getCurrentUser().getUid()));
-        Log.d(TAG,"Updated offer request array for user:"+mAuth.getCurrentUser().getUid());
         //Update UI
         updateReserveButtonsUI((Button) v);
     }
 
     private void updateReserveButtonsUI(Button button) {
         //Lock and grey out
-        Log.d(TAG,"Greying out reserve buttons");
         button.setEnabled(false);
         button.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         button.setClickable(false);
@@ -166,7 +154,6 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
     }
 
     public void checkIfRequestedAlready(Offer current, Button reserveButton) {
-        Log.d(TAG,"checkIfRequestedAlready");
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -176,11 +163,9 @@ public class ClientSeeOfferViewModel extends ViewModel implements FetchAddressTa
                             Map<String, Object> map =  task.getResult().getData();
                             for (Map.Entry<String, Object> entry : map.entrySet()) {
                                 if (entry.getKey().equals("requestedOffers")) {
-                                    Log.d(TAG, entry.getValue().toString());
                                     List<String> offerList = (List<String>) entry.getValue();
                                     for(String offer : offerList){
                                         if(offer.equals(current.getDbId())){
-                                            Log.d(TAG,"Updating buttons already requested");
                                             updateReserveButtonsUI(reserveButton);
                                         }
                                     }

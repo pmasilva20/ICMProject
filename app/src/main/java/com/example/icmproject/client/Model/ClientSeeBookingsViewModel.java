@@ -1,7 +1,5 @@
 package com.example.icmproject.client.Model;
 
-import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -25,7 +23,6 @@ public class ClientSeeBookingsViewModel extends ViewModel {
     private List<Offer> offersList;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView mLocationTextView;
 
     public ClientSeeBookingsViewModel() {
         this.offersList = new ArrayList<>();
@@ -47,7 +44,6 @@ public class ClientSeeBookingsViewModel extends ViewModel {
                         for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
                             Offer of = doc.toObject(Offer.class);
                             of.setDbId(doc.getId());
-                            Log.d(TAG,"Offer:"+of);
                             offersList.add(of);
                         }
                     }
@@ -56,7 +52,6 @@ public class ClientSeeBookingsViewModel extends ViewModel {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                            Log.d(TAG,"changeAdapter");
                             if (adapter != null)adapter.notifyDataSetChanged();
                         }
                     }

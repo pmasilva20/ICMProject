@@ -1,7 +1,6 @@
 package com.example.icmproject.client.UI;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -18,13 +17,11 @@ public class ClientMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Log.d("yau","ClientMenuActivity CREATE ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_menu);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-        //I added this if statement to keep the selected fragment when rotating the device
+        //Keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ClientCabazesFragment()).commit();

@@ -1,6 +1,5 @@
 package com.example.icmproject.restaurant.restaurantSeeOffer.Model;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -34,7 +33,6 @@ public class SeeOfferViewModel extends ViewModel {
     }
 
     public void loadOffersForRestaurant(SeeOfferAdapter adapter){
-        //Reset offerList for when it returns
         offersList.clear();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser loggedIn = mAuth.getCurrentUser();
@@ -43,9 +41,7 @@ public class SeeOfferViewModel extends ViewModel {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
-                            Log.d(TAG,"Getting document for rest:"+loggedIn.getEmail()+" ->"+doc.getData().toString());
                             Offer of = doc.toObject(Offer.class);
-                            Log.w(TAG,"offer"+of);
                             of.setDbId(doc.getId());
                             offersList.add(of);
                         }
@@ -55,7 +51,6 @@ public class SeeOfferViewModel extends ViewModel {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                            Log.d(TAG,"Adapter changing");
                             adapter.offerList = offersList;
                             adapter.notifyDataSetChanged();
                         }

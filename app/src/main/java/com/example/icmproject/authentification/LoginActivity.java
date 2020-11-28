@@ -2,7 +2,7 @@ package com.example.icmproject.authentification;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,14 +31,12 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     private static final String TAG = "loginActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private boolean logoutCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        logoutCheck = false;
 
     }
 
@@ -47,10 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         //Authentification
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
-//        if(currentUser != null && !logoutCheck){
-//            redirectUser(currentUser);
-//        }
     }
 
     private void redirectUser(FirebaseUser currentUser) {
@@ -63,26 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG,"Logging in");
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 //Send token for user just logged in
                                 sendNotificationToken(currentUser.getUid());
                                 Map<String,Object> userData = document.getData();
-                                //If it returns then logout
-                                logoutCheck = true;
                                 if(((String)userData.get("status")).equals("client")){
-                                    Log.d(TAG,"Redirecting to client");
                                     Intent i = new Intent(getApplicationContext(), ClientMenuActivity.class);
                                     startActivity(i);
                                 }
                                 else{
-                                    Log.d(TAG,"Redirecting to restaurant");
                                     Intent i = new Intent(getApplicationContext(), RestaurantSeeOffersActivity.class);
                                     startActivity(i);
                                 }
                             }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -95,20 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
                             return;
                         }
 
                         // Get new FCM registration token
                         String token = task.getResult();
 
-                        // Log
-                        Log.d(TAG, token);
                         //Send to FS
                         Map<String,Object> insert = new HashMap<>();
                         insert.put("notificationToken",token);
                         db.collection("users").document(uid).update(insert);
-                        Log.d(TAG,"Updated notification token when loggin in");
 
                     }
                 });
@@ -123,17 +105,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success
-                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             redirectUser(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
-                        // ...
                     }
                 });
     }

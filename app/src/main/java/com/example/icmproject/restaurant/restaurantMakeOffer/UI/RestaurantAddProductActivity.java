@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.icmproject.commonDataModel.Product;
 import com.example.icmproject.R;
@@ -33,10 +32,8 @@ public class RestaurantAddProductActivity extends AppCompatActivity implements  
 
     @Override
     public void onProductConfirmed(Product p) {
-        //Product has been confirmed
         Intent reply = new Intent();
         reply.putExtra(PRODUCT_REPLY,p);
-        Log.e(TAG,p.toString());
         setResult(RESULT_OK,reply);
         finish();
     }

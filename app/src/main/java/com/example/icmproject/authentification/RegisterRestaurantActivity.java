@@ -7,7 +7,6 @@ import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
@@ -47,7 +46,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
     private static final String TAG = "registerRestActivity";
     private FusedLocationProviderClient locationClient;
     private Location locationGotten;
-    private boolean loadingLocation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +68,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         }
         else {
-            Log.d(TAG, "getLocation: permissions already granted");
             locationClient.getLastLocation().addOnSuccessListener(
                     new OnSuccessListener<Location>() {
                         @Override
@@ -78,9 +75,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                             if (location != null) {
                                 locationGotten = location;
                                 new FetchAddressTask(RegisterRestaurantActivity.this,RegisterRestaurantActivity.this::onTaskCompleted).execute(location);
-                                Log.d(TAG, locationGotten.toString());
-                            } else {
-                                Log.e(TAG, "No Location could be Retrieved");
                             }
                         }
                     });
@@ -94,10 +88,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                 // otherwise, show a Toast
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocation();
-                }
-                else {
-                    //Do Stuff here if cant get Location
-                    Log.d(TAG,"Location permission denied");
                 }
                 break;
         }
@@ -118,11 +108,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
 
         String local = ((TextInputEditText)findViewById(R.id.editTextLocationRegisterRestaurant)).getText().toString();
 
-        Log.d(TAG, email);
-        Log.d(TAG, password);
-        Log.d(TAG, confirmPassword);
-        Log.d(TAG, res_name);
-        Log.d(TAG, local);
 
         if (!password.equals(confirmPassword)){
             Toast.makeText(this,"Passwords don't match", Toast.LENGTH_SHORT).show();
@@ -145,13 +130,11 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Redirect to DB stuff
                             addRestaurantToDB(email,password,localization,res_name,user.getUid(),locationGotten);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterRestaurantActivity.this, "Authentication failed,please try again",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -174,7 +157,6 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + uid);
                         Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(i);
                     }
@@ -185,25 +167,19 @@ public class RegisterRestaurantActivity extends AppCompatActivity implements Fet
                         mAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Log.e(TAG,"User deleted after database failure");
                             }
                         });
-                        Log.w(TAG, "Error adding document", e);
                     }
                 })
                 .addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        Log.w(TAG, "Document added");
                     }
                 });
     }
 
     @Override
     public void onTaskCompleted(List<Address> result) {
-        Log.d(TAG,"Got Address via geocoder"+result.get(0).toString());
-        //É isto que se quer,Distrito,result.get(0).getAdminArea()
-        //Locality para cidade result.get(0).getLocality()
         TextInputEditText loc = (TextInputEditText)findViewById(R.id.editTextLocationRegisterRestaurant);
         loc.setText(result.get(0).getLocality());
     }

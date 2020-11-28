@@ -39,8 +39,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product current = productList.get(position);
-        //Get each view and set stuff
-        DateFormat dt = new SimpleDateFormat("dd/mm/yyyy");
+        DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
         ((TextView)holder.productView.findViewById(R.id.textViewEmail)).setText(current.getUnit());
         ((TextView)holder.productView.findViewById(R.id.textViewRequesitado)).setText(dt.format(current.getShelfLife()));
         ((TextView)holder.productView.findViewById(R.id.textViewPreço)).setText(String.valueOf(current.getQuantity()));

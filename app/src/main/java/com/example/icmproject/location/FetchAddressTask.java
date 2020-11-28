@@ -5,7 +5,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.icmproject.R;
 
@@ -55,30 +54,17 @@ public class FetchAddressTask extends AsyncTask<Location, Void, List<Address>> {
                 if (resultMessage.isEmpty()) {
                     resultMessage = mContext
                             .getString(R.string.no_address_found);
-                    Log.e(TAG, resultMessage);
                 }
-            }
-            else{
-               for(Address add : addresses){
-                   Log.d(TAG,add.toString());
-               }
             }
 
             }
         catch (IOException ioException) {
-            // Catch network or other I/O problems
             resultMessage = mContext
                     .getString(R.string.service_not_available);
-            Log.e(TAG, resultMessage, ioException);
         }
         catch (IllegalArgumentException illegalArgumentException) {
-            // Catch invalid latitude or longitude values
             resultMessage = mContext
                     .getString(R.string.invalid_lat_long_used);
-            Log.e(TAG, resultMessage + ". " +
-                    "Latitude = " + location.getLatitude() +
-                    ", Longitude = " +
-                    location.getLongitude(), illegalArgumentException);
         }
         return addresses;
     }

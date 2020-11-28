@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.icmproject.R;
@@ -24,12 +23,9 @@ public class RestaurantSeeOffersActivity extends AppCompatActivity implements Bo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_see_offer);
         navigationView = findViewById(R.id.bottom_navigation_restaurant_see_offer);
-        Log.e(TAG,navigationView.toString());
         navigationView.setOnNavigationItemSelectedListener(this);
         updateNavigationBarState();
-        //Set Fragment on FrameLayout
         frag = SeeOfferFragment.newInstance();
-        // Get the FragmentManager and start a transaction.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
@@ -39,16 +35,13 @@ public class RestaurantSeeOffersActivity extends AppCompatActivity implements Bo
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Log.e(TAG,"onNavigationItemSelected");
         navigationView.postDelayed(() -> {
             int itemId = item.getItemId();
             if(itemId == R.id.page_make_offer){
                 startActivity(new Intent(this, RestaurantMakeOfferActivity.class));
-                Log.e(TAG,""+itemId);
             }
             else if(itemId == R.id.page_see_offer){
                 startActivity(new Intent(this, RestaurantSeeOffersActivity.class));
-                Log.e(TAG,""+itemId);
             }
             finish();
         }, 300);

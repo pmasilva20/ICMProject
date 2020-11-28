@@ -1,7 +1,6 @@
 package com.example.icmproject.client.UI;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,7 @@ public class ClientCabazesFragment extends Fragment {
     private ClientSeeOfferAdapter adapter;
     private ClientCityListAdapter adapterCity;
 
-    public ClientCabazesFragment() {
-        // Required empty public constructor
-    }
+    public ClientCabazesFragment() {}
 
     @Override
     public void onStart() {
@@ -36,13 +33,11 @@ public class ClientCabazesFragment extends Fragment {
         // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewSeeOffer);
         // Create an adapter and supply the data to be displayed.
-        if(vm.getListOffers() == null) Log.e("NULL","vm wrong");
         adapter = new ClientSeeOfferAdapter(getContext(), vm.getListOffers(),vm);
         // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);
         // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         // Get a handle to the RecyclerView.
         recyclerViewCity = getView().findViewById(R.id.recyclerViewCityList);
@@ -62,7 +57,6 @@ public class ClientCabazesFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //Set ViewModel
         vm = new ViewModelProvider(requireActivity()).get(ClientSeeOfferViewModel.class);
     }
 

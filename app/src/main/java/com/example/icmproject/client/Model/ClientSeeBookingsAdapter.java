@@ -2,7 +2,6 @@ package com.example.icmproject.client.Model;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,8 +72,7 @@ public class ClientSeeBookingsAdapter extends RecyclerView.Adapter<ClientSeeBook
             @Override
             public void onClick(View v) {
                 Offer selected = offerList.get(position);
-                //Go to next Acitivty with Parceable Offer
-                Log.d(TAG,"Onclick "+selected.toString());
+                //Go to next Activity with Parcelable Offer
                 Intent i = new Intent(v.getContext(), ClientOfferDetailsActivity.class);
                 i.putExtra(OFFER_SELECTED,selected);
                 v.getContext().startActivity(i);

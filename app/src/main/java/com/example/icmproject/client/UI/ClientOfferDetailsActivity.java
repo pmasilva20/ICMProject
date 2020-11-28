@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.icmproject.commonDataModel.Offer;
@@ -29,12 +28,9 @@ public class ClientOfferDetailsActivity extends AppCompatActivity implements Off
         setContentView(R.layout.activity_client_offer_details);
         vm = new ViewModelProvider(this).get(OfferDetailsViewModel.class);
         Offer offerSelected = getIntent().getParcelableExtra(SeeOfferAdapter.OFFER_SELECTED);
-        Log.d(TAG,offerSelected.toString());
         vm.setOfferSelected(offerSelected);
-        //Set Fragment on FrameLayout
         frag = OfferDetailsUsersFragment.newInstance(offerSelected);
         fragProducts = OfferDetailsProductsFragment.newInstance("arg1","arg2");
-        // Get the FragmentManager and start a transaction.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
@@ -43,8 +39,7 @@ public class ClientOfferDetailsActivity extends AppCompatActivity implements Off
     }
     @Override
     public void OnChangingToOfferDetailsProductsFragment() {
-        //When button is clicked call this
-        // Get the FragmentManager and start a transaction.
+        //When button is clicked
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.icmproject.R;
@@ -36,25 +35,4 @@ public class RestaurantMenuActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    //TODO:Take this out
-    public void testNoification(View view) {
-            //Fetch from FireBase Messaging,send to FireStore
-            FirebaseMessaging.getInstance().getToken()
-                    .addOnCompleteListener(new OnCompleteListener<String>() {
-                        @Override
-                        public void onComplete(@NonNull Task<String> task) {
-                            if (!task.isSuccessful()) {
-                                Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                                return;
-                            }
-
-                            // Get new FCM registration token
-                            String token = task.getResult();
-                            //TEST SEND NOTIFICATION TO MYSELF
-                            new NotificationManager().execute(token);
-                        }
-                    });
-
-
-    }
 }

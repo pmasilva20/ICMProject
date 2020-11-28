@@ -1,7 +1,6 @@
 package com.example.icmproject.restaurant.restaurantSeeOffer.Model;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +48,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
         holder.productView.findViewById(R.id.buttonConfirmRequest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Make some call to send notification to user
-                //Lock all other options
-                Log.d(TAG,"Onclick,selected to lock this user: "+current.getDbId());
+                //Make call to send notification to user
                 ((OfferDetailsViewModel)vm).confirmRequest(current.getDbId(),v,context);
             }
         });

@@ -1,7 +1,6 @@
 package com.example.icmproject.notification;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -47,25 +46,12 @@ public class NotificationManager extends AsyncTask<String, Integer, Void> {
             urlConnection.setChunkedStreamingMode(0);
 
 
-            Log.d(TAG,object.toString());
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     out, "UTF-8"));
             writer.write(object.toString());
             writer.flush();
 
-            int code = urlConnection.getResponseCode();
-            if (code !=  201) {
-                Log.e(TAG,urlConnection.getResponseMessage());
-                //throw new IOException("Invalid response from server: " + code);
-            }
-
-            BufferedReader rd = new BufferedReader(new InputStreamReader(
-                    urlConnection.getInputStream()));
-            String line;
-            while ((line = rd.readLine()) != null) {
-                Log.i("data", line);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -85,6 +71,5 @@ public class NotificationManager extends AsyncTask<String, Integer, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        Log.d(TAG,"Done sending notification");
     }
 }

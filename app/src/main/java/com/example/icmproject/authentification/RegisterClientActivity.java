@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,13 +48,11 @@ public class RegisterClientActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Redirect to DB stuff
                             addClientToDB(email,password,user.getUid());
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterClientActivity.this, "Authentication failed,please try again",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -76,7 +73,6 @@ public class RegisterClientActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + uid);
                         Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(i);
                     }
@@ -87,16 +83,13 @@ public class RegisterClientActivity extends AppCompatActivity {
                         mAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Log.e(TAG,"User deleted after database failure");
                             }
                         });
-                        Log.w(TAG, "Error adding document", e);
                     }
                 })
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Log.w(TAG, "Document added");
                     }
                 });
     }
@@ -113,9 +106,6 @@ public class RegisterClientActivity extends AppCompatActivity {
         TextInputLayout textInputLayoutConfirmPassword = findViewById(R.id.editTextConfirmPasswordRegisterClient);
         String confirmPassword = textInputLayoutConfirmPassword.getEditText().getText().toString();
 
-        Log.d(TAG, email);
-        Log.d(TAG, password);
-        Log.d(TAG, confirmPassword);
 
         if (!password.equals(confirmPassword)){
             Toast.makeText(this,"Passwords don't match", Toast.LENGTH_SHORT).show();

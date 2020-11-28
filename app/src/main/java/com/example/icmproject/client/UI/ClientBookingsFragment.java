@@ -1,7 +1,6 @@
 package com.example.icmproject.client.UI;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +22,7 @@ public class ClientBookingsFragment extends Fragment {
     private RecyclerView recyclerView;
     private ClientSeeBookingsAdapter adapter;
 
-    public ClientBookingsFragment() {
-        // Required empty public constructor
-    }
+    public ClientBookingsFragment() {}
 
     @Override
     public void onStart() {
@@ -33,7 +30,6 @@ public class ClientBookingsFragment extends Fragment {
         // Get a handle to the RecyclerView.
         recyclerView = getView().findViewById(R.id.recyclerViewSeeOfferBooking);
         // Create an adapter and supply the data to be displayed.
-        if(vm.getListOffers() == null) Log.e("NULL","vm wrong");
         adapter = new ClientSeeBookingsAdapter(getContext(), vm.getListOffers());
         // Connect the adapter with the RecyclerView.
         recyclerView.setAdapter(adapter);

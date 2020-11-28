@@ -127,7 +127,6 @@ public class Offer implements Parcelable {
         return price;
     }
     public Date getValidade(){
-        //TODO:Corrigir este bug,por vezes products é null
         if(products == null)return new Date();
         Date val = products.get(0).getShelfLife();
         for(Product p :products){
