@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurantSeeOffer.OfferDetailsUsersFragment">
+    tools:context=".restaurant.restaurantSeeOffer.UI.OfferDetailsUsersFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +85,6 @@
                 android:ems="10"
                 android:inputType="number"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerViewOfferDetailsUsers"
                 app:layout_constraintEnd_toStartOf="@+id/buttonOfferDetailsUsersSeeProducts"
                 app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
